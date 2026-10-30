@@ -27,6 +27,7 @@ Run `python tools/build_overviews.py` after changing screenshots or wording, or 
 - [ ] Create a GoatCounter site and paste its code into `assets/site.js` to switch on analytics.
 - [ ] Check the demo customer names in Forge's screenshots against real companies (Summit Surgical, Horizon Avionics, Keystone Orthopedics and others). Keep the "Sample data" labels on all screenshots, because the data is staged.
 - [ ] Don't claim digital inspection recording at the floor station until it's built.
+- [ ] Don't show the audit trail of Forge's sample NCR-000009. Its record dates were set by hand, so the audit trail reads the build date. The old NCR-000003 and CAPA-000007 shouldn't be used either.
 - [ ] Add the demo videos (marked on the product pages).
 - [ ] Swap the email in `assets/site.js` for the dedicated address.
 - [ ] Remove `<meta name="robots" content="noindex">` from every page.
