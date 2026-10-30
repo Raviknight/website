@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><!-- remove at launch -->
+<title>Request a Demo</title>
+<meta name="description" content="Ask for a demo or a quote for Forge or PM Tracker.">
+<link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head"><div class="wrap">
+  <a class="brand" href="../"><img src="../assets/mark.svg" alt="">Forge + PM Tracker</a>
+  <nav class="nav" aria-label="Main">
+    <a href="../forge/">Forge</a>
+    <a href="../pm-tracker/">PM Tracker</a>
+    <a class="btn" href="./" aria-current="page">Request a demo</a>
+  </nav>
+</div></header>
+
+<main id="main">
+  <section class="hero"><div class="wrap contact-layout">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h1>Let's talk about your shop.</h1>
+      <p class="lede">Ask for a demo or a quote, or just ask a question.</p>
+      <h2 style="font-size:1.2rem;margin-top:32px">What happens next</h2>
+      <ul class="ticks">
+        <li>We read your message and reply by email.</li>
+        <li>We ask about what you make and the standards you work to.</li>
+        <li>We show you the parts that apply to you.</li>
+      </ul>
+      <p style="margin-top:28px;color:var(--muted)">Prefer email? <a data-email href="#">Enable JavaScript to see our address</a></p>
+    </div>
+
+    <form id="contact-form" class="form card">
+      <div class="field">
+        <label for="product">I'm interested in</label>
+        <select id="product" name="product">
+          <option value="forge">Forge</option>
+          <option value="pm-tracker">PM Tracker</option>
+          <option value="both">Both</option>
+          <option value="not-sure">Not sure yet</option>
+        </select>
+      </div>
+      <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
+      <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" required></div>
+      <div class="field"><label for="phone">Phone <span class="opt">(optional)</span></label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="message">How can we help?</label><textarea id="message" name="message" required></textarea></div>
+      <div class="hp" aria-hidden="true"><label for="botcheck">Leave this empty</label><input id="botcheck" name="botcheck" tabindex="-1" autocomplete="off"></div>
+      <button class="btn" type="submit">Send message</button>
+      <p class="status" role="status"></p>
+      <p style="font-size:.88rem;color:var(--muted)">We only use these details to reply to you. See our <a href="../privacy/">privacy note</a>.</p>
+    </form>
+  </div></section>
+</main>
+
+<footer class="site-foot"><div class="wrap">
+  <span>© 2026 Forge and PM Tracker</span>
+  <nav aria-label="Footer">
+    <a href="../forge/">Forge</a><a href="../pm-tracker/">PM Tracker</a><a href="./">Contact</a><a href="../privacy/">Privacy</a>
+  </nav>
+</div></footer>
+<script src="../assets/site.js"></script>
+</body>
+</html>
