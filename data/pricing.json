@@ -35,7 +35,7 @@
       { "name": "Quality", "price": null, "unit": "", "summary": "Ballooning, IGS, gages and calibration" },
       { "name": "Document Control", "price": null, "unit": "", "summary": "Controlled documents, stored files and the form designer" },
       { "name": "Advanced Scheduling", "price": null, "unit": "", "summary": "The machine scheduling board" },
-      { "name": "Shop Floor", "price": null, "unit": "terminal", "summary": "More tools at the floor terminal. Ask us what's included." },
+      { "name": "Shop Floor", "price": null, "unit": "terminal", "summary": "Documents and drawings at the terminal, downtime reasons and scrap at the machine, wall boards and live job displays" },
       { "name": "Maintenance", "price": null, "unit": "", "summary": "PM Tracker inside Forge" }
     ]
   },
