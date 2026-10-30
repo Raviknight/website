@@ -1,0 +1,50 @@
+{
+  "note": "These prices are indicative and may change.",
+  "forge": {
+    "seat_label": "concurrent user",
+    "plans": [
+      {
+        "name": "Core",
+        "price": 5,
+        "summary": "Runs a job from quote to invoice.",
+        "includes": [
+          "Quotes, sales orders and invoicing",
+          "Parts, BOMs and routings",
+          "Jobs, travelers and the job schedule",
+          "Purchasing, inventory and shipping",
+          "NCR and CAPA",
+          "Free clock in and out on a floor terminal"
+        ]
+      },
+      {
+        "name": "Complete",
+        "price": 12,
+        "summary": "Adds what regulated shops usually need.",
+        "includes": [
+          "Everything in Core",
+          "Change Control",
+          "Quality, including ballooning and IGS",
+          "Document Control"
+        ]
+      }
+    ],
+    "modules_note": "Buy modules on top of Core when you need them. Each one has its own price.",
+    "modules": [
+      { "name": "Change Control", "price": null, "unit": "", "summary": "Engineering and document change notices" },
+      { "name": "Quality", "price": null, "unit": "", "summary": "Ballooning, IGS, gages and calibration" },
+      { "name": "Document Control", "price": null, "unit": "", "summary": "Controlled documents, stored files and the form designer" },
+      { "name": "Advanced Scheduling", "price": null, "unit": "", "summary": "The machine scheduling board" },
+      { "name": "Shop Floor", "price": null, "unit": "terminal", "summary": "Start and stop jobs on floor terminals" },
+      { "name": "Maintenance", "price": null, "unit": "", "summary": "PM Tracker inside Forge" }
+    ]
+  },
+  "pm_tracker": {
+    "free_machines": 5,
+    "free_months": 6,
+    "tiers": [
+      { "up_to": 15, "price": 5 },
+      { "up_to": 50, "price": 4 },
+      { "up_to": 100, "price": 3 }
+    ]
+  }
+}

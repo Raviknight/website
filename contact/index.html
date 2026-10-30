@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex"><!-- remove at launch -->
-<title>Request a Demo</title>
-<meta name="description" content="Ask for a demo or a quote for Forge or PM Tracker.">
+<title>Contact and Demos</title>
+<meta name="description" content="Ask for a demo, a product overview or a quote for Forge or PM Tracker.">
 <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -16,6 +16,7 @@
   <nav class="nav" aria-label="Main">
     <a href="../forge/">Forge</a>
     <a href="../pm-tracker/">PM Tracker</a>
+    <a href="../pricing/">Pricing</a>
     <a class="btn" href="./" aria-current="page">Request a demo</a>
   </nav>
 </div></header>
@@ -24,20 +25,29 @@
   <section class="hero"><div class="wrap contact-layout">
     <div>
       <p class="eyebrow">Contact</p>
-      <h1>Let's talk about your shop.</h1>
-      <p class="lede">Ask for a demo or a quote, or just ask a question.</p>
+      <h1>Tell us how you work today.</h1>
+      <p class="lede">Paper, Excel, or an ERP you've had for years: tell us where you're starting from. Ask for a demo or a quote, or just grab the overview.</p>
       <h2 style="font-size:1.2rem;margin-top:32px">What happens next</h2>
       <ul class="ticks">
         <li>We read your message and reply by email.</li>
-        <li>We ask about what you make and the standards you work to.</li>
-        <li>We show you the parts that apply to you.</li>
+        <li>We ask what you make and which standards you work to.</li>
+        <li>If it looks like a fit, we show you the parts that apply to you.</li>
       </ul>
       <p style="margin-top:28px;color:var(--muted)">Prefer email? <a data-email href="#">Enable JavaScript to see our address</a></p>
     </div>
 
     <form id="contact-form" class="form card">
       <div class="field">
-        <label for="product">I'm interested in</label>
+        <label for="intent">What would you like?</label>
+        <select id="intent" name="intent">
+          <option value="demo">A demo</option>
+          <option value="overview">The product overview (PDF)</option>
+          <option value="pricing">A quote</option>
+          <option value="question">To ask a question</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="product">Which product?</label>
         <select id="product" name="product">
           <option value="forge">Forge</option>
           <option value="pm-tracker">PM Tracker</option>
@@ -49,10 +59,11 @@
       <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
       <div class="field"><label for="company">Company</label><input id="company" name="company" autocomplete="organization" required></div>
       <div class="field"><label for="phone">Phone <span class="opt">(optional)</span></label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-      <div class="field"><label for="message">How can we help?</label><textarea id="message" name="message" required></textarea></div>
+      <div class="field"><label for="message">What are you using today? <span class="opt">(optional)</span></label><textarea id="message" name="message" placeholder="For example: PMs on paper and an Excel log for 30 machines"></textarea></div>
       <div class="hp" aria-hidden="true"><label for="botcheck">Leave this empty</label><input id="botcheck" name="botcheck" tabindex="-1" autocomplete="off"></div>
-      <button class="btn" type="submit">Send message</button>
+      <button class="btn" type="submit">Send</button>
       <p class="status" role="status"></p>
+      <div class="downloads"></div>
       <p style="font-size:.88rem;color:var(--muted)">We only use these details to reply to you. See our <a href="../privacy/">privacy note</a>.</p>
     </form>
   </div></section>
@@ -61,7 +72,7 @@
 <footer class="site-foot"><div class="wrap">
   <span>© 2026 Forge and PM Tracker</span>
   <nav aria-label="Footer">
-    <a href="../forge/">Forge</a><a href="../pm-tracker/">PM Tracker</a><a href="./">Contact</a><a href="../privacy/">Privacy</a>
+    <a href="../forge/">Forge</a><a href="../pm-tracker/">PM Tracker</a><a href="../pricing/">Pricing</a><a href="./">Contact</a><a href="../privacy/">Privacy</a>
   </nav>
 </div></footer>
 <script src="../assets/site.js"></script>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex"><!-- remove at launch -->
 <title>Forge Manufacturing ERP</title>
-<meta name="description" content="Forge is a manufacturing ERP for small contract manufacturers in regulated industries, from quote to invoice.">
+<meta name="description" content="Forge is a manufacturing ERP for contract manufacturers moving off Excel, Word or an old ERP.">
 <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -16,6 +16,7 @@
   <nav class="nav" aria-label="Main">
     <a href="./" aria-current="page">Forge</a>
     <a href="../pm-tracker/">PM Tracker</a>
+    <a href="../pricing/">Pricing</a>
     <a class="btn" href="../contact/?product=forge">Request a demo</a>
   </nav>
 </div></header>
@@ -23,24 +24,53 @@
 <main id="main">
   <section class="hero"><div class="wrap">
     <p class="eyebrow">Forge manufacturing ERP</p>
-    <h1>The ease of a job-shop system, with the depth regulated work demands.</h1>
-    <p class="lede">Forge is for small contract manufacturers: machine shops, aerospace, medical device, defense and ISO 9001 shops that need more than spreadsheets and can't justify an enterprise rollout.</p>
-    <div class="cta-row"><a class="btn" href="../contact/?product=forge">Request a demo</a></div>
+    <h1>Replace the spreadsheets, or the ERP your team works around.</h1>
+    <p class="lede">The ease of a job-shop system, with the depth regulated work demands. Forge is for contract manufacturers: machine shops, aerospace, medical device, defense and ISO 9001 shops.</p>
+    <div class="cta-row">
+      <a class="btn" href="../contact/?product=forge">Request a demo</a>
+      <a class="btn ghost" href="../contact/?product=forge&amp;intent=overview">Get the overview (PDF)</a>
+    </div>
   </div></section>
 
   <section class="alt"><div class="wrap">
+    <div class="section-head"><h2>Which one sounds like your shop?</h2></div>
+    <div class="grid two">
+      <article class="card">
+        <h3>You run on Excel and Word</h3>
+        <ul class="ticks">
+          <li>Quotes, orders and travelers are separate files, so people re-type the same job.</li>
+          <li>You find out what a job really cost long after it shipped, if at all.</li>
+          <li>The schedule depends on one person who knows it.</li>
+          <li>An NCR means hunting for the right version of the form.</li>
+        </ul>
+        <p style="margin-top:16px">Forge gives you a single record from quote to invoice, and it starts at the Core plan, so you only buy what you need. <a href="../pricing/">See pricing</a></p>
+      </article>
+      <article class="card">
+        <h3>You've outgrown an old ERP</h3>
+        <ul class="ticks">
+          <li>The screens look decades old, and new hires take months to learn them.</li>
+          <li>The workflows were built for how shops ran years ago.</li>
+          <li>Getting a report out takes a specialist, or an export to Excel.</li>
+          <li>Quality and change records live in a different system, or in binders.</li>
+        </ul>
+        <p style="margin-top:16px">Forge is a modern web app, with scheduling, quality and change control in one place. Tell us what you run today and we'll talk through what moving looks like.</p>
+      </article>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
     <div class="section-head"><h2>One record from quote to invoice</h2><p>Each step picks up from the last, so a job's history stays in one place.</p></div>
     <ol class="flow">
       <li>Quote</li><li>Sales order</li><li>Work order</li><li>Purchasing</li><li>Production</li><li>Quality</li><li>Shipping</li><li>Invoice</li>
     </ol>
   </div></section>
 
-  <section><div class="wrap">
+  <section class="alt"><div class="wrap">
     <div class="section-head"><h2>What Forge covers</h2></div>
     <div class="grid three">
       <div class="card"><h3>Quote to cash</h3><p>Quotes, orders, work orders, shipping, certificates of conformance and invoicing.</p></div>
       <div class="card"><h3>Parts, BOMs and routings</h3><p>A part master with revisions, bills of materials and routings.</p></div>
-      <div class="card"><h3>Job costing</h3><p>See what a job actually cost, not only what it was quoted at.</p></div>
+      <div class="card"><h3>Job costing</h3><p>See what a job actually cost, and compare it with the quote.</p></div>
       <div class="card"><h3>Purchasing and inventory</h3><p>Purchasing, receiving and stock, with lot traceability.</p></div>
       <div class="card"><h3>Ballooning and inspection</h3><p>Balloon your prints to capture characteristics, and inspect against inspection guide sheets (IGS).</p></div>
       <div class="card"><h3>Quality</h3><p>NCR and CAPA, gages and calibration, and internal audits.</p></div>
@@ -50,34 +80,40 @@
     </div>
   </div></section>
 
-  <section class="alt"><div class="wrap">
+  <section><div class="wrap">
     <div class="section-head"><h2>Schedule by job or by machine</h2><p>Start from an automatic schedule, then adjust it where your planners know better.</p></div>
     <div class="grid three">
-      <div class="card"><h3>Auto scheduling</h3><p>Forge schedules each operation forward from today, using your routing estimates.</p></div>
+      <div class="card"><h3>Auto scheduling</h3><p>Forge plans each job back from its due date using your routing estimates, and shows what's going to be late.</p></div>
       <div class="card"><h3>Job view</h3><p>See every job on one chart and spot which ones are running late.</p></div>
-      <div class="card"><h3>Machine view</h3><p>Each machine gets its own lane. Drag work between them, then approve the plan.</p></div>
+      <div class="card"><h3>Machine view</h3><p>The Advanced Scheduling module plans operations forward from now against machine capacity. Each machine gets a lane, and you drag work and approve the plan.</p></div>
     </div>
   </div></section>
 
-  <section><div class="wrap">
+  <!-- VIDEO: add the Forge demo video here when it's ready. -->
+
+  <section class="alt"><div class="wrap">
     <div class="section-head"><h2>A look inside</h2></div>
-    <div class="grid two">
+    <div class="grid two" id="forge-shots">
+      <figure class="shot" style="grid-column:1/-1">
+        <img src="../assets/img/forge-job-schedule.png" width="1440" height="900" loading="lazy" alt="Forge job schedule chart listing work orders with due dates, status and bars across a calendar, flagging late jobs in red.">
+        <figcaption>The job schedule flags late work and shows when each job must start. Sample data.</figcaption>
+      </figure>
       <figure class="shot">
-        <img src="../assets/img/forge-routing.png" width="1280" height="1167" loading="lazy" alt="Forge routing for a hydraulic manifold assembly, showing six steps from kitting to final inspection, with its materials listed below.">
-        <figcaption>Routing with steps, inspections and materials. Sample data.</figcaption>
+        <img src="../assets/img/forge-routing.png" width="1280" height="1167" loading="lazy" alt="Forge routing for a hydraulic manifold assembly, showing six steps from kitting to final inspection.">
+        <figcaption>Routing with steps and inspections. Sample data.</figcaption>
       </figure>
       <figure class="shot">
         <img src="../assets/img/forge-change-notice.png" width="1280" height="1061" loading="lazy" alt="Forge engineering change notice sent back for revision, with the reason, the approver and customer approval details.">
         <figcaption>A change notice sent back for revision, with the reason shown. Sample data.</figcaption>
       </figure>
       <figure class="shot" style="grid-column:1/-1">
-        <img src="../assets/img/forge-ncr-audit.png" width="1624" height="1090" loading="lazy" alt="Forge nonconformance record showing the linked CAPA, its root cause, verification and a dated audit trail of who did what.">
+        <img src="../assets/img/forge-ncr-audit.png" width="1624" height="1090" loading="lazy" alt="Forge nonconformance record showing the linked CAPA, its root cause, verification and a dated audit trail.">
         <figcaption>A nonconformance with its CAPA, verification and audit trail. Sample data.</figcaption>
       </figure>
     </div>
   </div></section>
 
-  <section class="alt"><div class="wrap">
+  <section><div class="wrap">
     <div class="section-head">
       <h2>Designed to support regulated work</h2>
       <p>Forge supports the practices these standards ask for, including audit trails, electronic signatures and controlled documents. Certification and validation remain with your shop.</p>
@@ -87,25 +123,29 @@
     </ul>
   </div></section>
 
-  <section><div class="wrap">
+  <section class="alt"><div class="wrap">
     <div class="section-head"><h2>Questions we expect</h2></div>
     <details><summary>Where does Forge run?</summary><p>On your own PC or server, using a Windows installer. Your data stays with you.</p></details>
     <details><summary>Does Forge make us compliant?</summary><p>No software can do that alone. Forge is designed to support your quality system, and your shop is what gets certified.</p></details>
-    <details><summary>Do we have to buy everything?</summary><p>No. Forge is modular, so we'll help you start with the parts your shop needs.</p></details>
-    <details><summary>How much does it cost?</summary><p>We quote each shop based on its size and the parts it needs. Ask us for a quote.</p></details>
+    <details><summary>Do we have to buy everything?</summary><p>No. Start with Core and add modules when you need them, or take Complete if you need quality, documents and change control from the start.</p></details>
+    <details><summary>How much does it cost?</summary><p>Plans start at <span data-price="forge-from">$5</span> per <span data-price="forge-seat">concurrent user</span> per month. <a href="../pricing/">See pricing and the calculator</a>.</p></details>
   </div></section>
 
   <section class="band"><div class="wrap">
     <h2>See Forge on a job like yours</h2>
-    <div class="cta-row"><a class="btn" href="../contact/?product=forge">Request a demo</a></div>
+    <div class="cta-row">
+      <a class="btn" href="../contact/?product=forge">Request a demo</a>
+      <a class="btn ghost" href="../pricing/#forge-pricing">See pricing</a>
+    </div>
   </div></section>
 </main>
 
 <footer class="site-foot"><div class="wrap">
   <span>© 2026 Forge and PM Tracker</span>
   <nav aria-label="Footer">
-    <a href="./">Forge</a><a href="../pm-tracker/">PM Tracker</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a>
+    <a href="./">Forge</a><a href="../pm-tracker/">PM Tracker</a><a href="../pricing/">Pricing</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a>
   </nav>
 </div></footer>
+<script src="../assets/site.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex"><!-- remove at launch -->
 <title>PM Tracker Maintenance Software</title>
-<meta name="description" content="PM Tracker is a self-hosted maintenance system for regulated manufacturers, with PMs, repairs and machine holds on one auditable record.">
+<meta name="description" content="Move your PMs off paper and your records out of Excel. PM Tracker is a self-hosted maintenance system for regulated manufacturers.">
 <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
@@ -16,6 +16,7 @@
   <nav class="nav" aria-label="Main">
     <a href="../forge/">Forge</a>
     <a href="./" aria-current="page">PM Tracker</a>
+    <a href="../pricing/">Pricing</a>
     <a class="btn" href="../contact/?product=pm-tracker">Request a demo</a>
   </nav>
 </div></header>
@@ -23,14 +24,48 @@
 <main id="main">
   <section class="hero"><div class="wrap">
     <p class="eyebrow">PM Tracker maintenance software</p>
-    <h1>PMs, repairs and machine holds on one auditable record.</h1>
-    <p class="lede">A self-hosted maintenance system for manufacturers regulated by the FDA, EMA and Health Canada. It runs on your own server, and the full history stays with you.</p>
-    <div class="cta-row"><a class="btn" href="../contact/?product=pm-tracker">Request a demo</a></div>
+    <h1>Get your PMs off paper and your records out of Excel.</h1>
+    <p class="lede">A self-hosted maintenance system for manufacturers regulated by the FDA, EMA and Health Canada. Free for up to <span data-price="pm-free-machines">5</span> machines, and the first <span data-price="pm-free-months">6</span> months are free for bigger plants.</p>
+    <div class="cta-row">
+      <a class="btn" href="../contact/?product=pm-tracker">Request a demo</a>
+      <a class="btn ghost" href="../contact/?product=pm-tracker&amp;intent=overview">Get the overview (PDF)</a>
+    </div>
     <figure class="shot hero-shot">
-      <img src="../assets/img/pm-dashboard.png" width="1440" height="900" alt="PM Tracker dashboard showing overdue and upcoming tasks, with asset health alerts for machines that skipped a PM cycle.">
+      <img src="../assets/img/pm-dashboard.png" width="1440" height="690" alt="PM Tracker dashboard showing overdue and upcoming tasks, with asset health alerts for machines that skipped a PM cycle.">
       <figcaption>The dashboard shows what's overdue and which machines need attention. Sample data.</figcaption>
     </figure>
   </div></section>
+
+  <section class="alt"><div class="wrap">
+    <div class="section-head"><h2>Does this sound familiar?</h2></div>
+    <div class="grid two">
+      <div class="card"><h3>PMs are on paper</h3><p>Sheets get lost or filled in late, and signed copies end up in a binder. In PM Tracker, technicians work through the checklist on screen and it saves as they go.</p></div>
+      <div class="card"><h3>Records live in Excel</h3><p>Anyone can overwrite a cell, and nobody can tell who did. PM Tracker logs every action in an append-only audit trail.</p></div>
+      <div class="card"><h3>Tracking is the real problem</h3><p>Finding out what's overdue means asking around. The dashboard and live board show it to everyone.</p></div>
+      <div class="card"><h3>You've never used maintenance software</h3><p>You don't need a CMMS background. Import your asset and PM lists, and start with up to <span data-price="pm-free-machines">5</span> machines free.</p></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="section-head"><h2>Plan the week. Keep the floor in view.</h2></div>
+    <div class="grid three">
+      <div class="card"><h3>Drag-and-drop planning</h3><p>Supervisors pick up a PM and drop it where it fits, as the week changes.</p></div>
+      <div class="card"><h3>Auto scheduling</h3><p>If nobody has planned the week, PM Tracker schedules the work and marks it as auto-scheduled, so you can tell it wasn't reviewed.</p></div>
+      <div class="card"><h3>Live board</h3><p>A wall display of work due, your team, machine availability and planned downtime. It refreshes by itself.</p></div>
+    </div>
+    <div class="grid two" style="margin-top:20px">
+      <figure class="shot">
+        <img src="../assets/img/pm-weekly-plan.png" width="1440" height="750" loading="lazy" alt="PM Tracker Plan Next Week grid of technicians by day, with PM cards that can be moved and a Confirm plan button.">
+        <figcaption>The weekly plan, by technician and day. Sample data.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="../assets/img/pm-live-board.png" width="1440" height="480" loading="lazy" alt="PM Tracker live board showing machines on hold, in breakdown, in maintenance and awaiting acknowledgement.">
+        <figcaption>The live board's machine availability view. Sample data.</figcaption>
+      </figure>
+    </div>
+  </div></section>
+
+  <!-- VIDEO: add the PM Tracker demo video here when it's ready. -->
 
   <section class="alt"><div class="wrap">
     <div class="section-head"><h2>From schedule to reviewed record</h2></div>
@@ -52,28 +87,20 @@
   </div></section>
 
   <section><div class="wrap">
-    <div class="section-head"><h2>Plan the week. Keep the floor in view.</h2></div>
-    <div class="grid three">
-      <div class="card"><h3>Drag-and-drop planning</h3><p>Supervisors pick up a PM and drop it where it fits, as the week changes.</p></div>
-      <div class="card"><h3>Auto scheduling</h3><p>If nobody confirms a week's plan, PM Tracker schedules the work and marks it as auto-scheduled, so you can tell it wasn't reviewed.</p></div>
-      <div class="card"><h3>Live board</h3><p>A wall display of work due, your team, machine availability and planned downtime. It refreshes by itself.</p></div>
-    </div>
-  </div></section>
-
-  <section class="alt"><div class="wrap">
-    <div class="grid two">
+    <div class="section-head"><h2>A look inside</h2></div>
+    <div class="grid two" id="pm-shots">
       <figure class="shot">
-        <img src="../assets/img/pm-schedule.png" width="1440" height="900" loading="lazy" alt="PM Tracker month calendar of preventive maintenance tasks, colour-coded by status.">
+        <img src="../assets/img/pm-schedule.png" width="1440" height="750" loading="lazy" alt="PM Tracker month calendar of preventive maintenance tasks, colour-coded by status.">
         <figcaption>Schedule view. Sample data.</figcaption>
       </figure>
       <figure class="shot">
-        <img src="../assets/img/pm-audit.png" width="1440" height="900" loading="lazy" alt="PM Tracker audit trail listing the date, user, action and description of each change.">
+        <img src="../assets/img/pm-audit.png" width="1440" height="750" loading="lazy" alt="PM Tracker audit trail listing the date, user, action and description of each change.">
         <figcaption>Audit trail. Sample data.</figcaption>
       </figure>
     </div>
   </div></section>
 
-  <section><div class="wrap">
+  <section class="alt"><div class="wrap">
     <div class="section-head"><h2>Built for regulated plants</h2></div>
     <div class="grid three">
       <div class="card"><h3>Append-only audit trail</h3><p>Every action is logged and can't be edited afterwards. It's designed to support your validation.</p></div>
@@ -82,25 +109,29 @@
     </div>
   </div></section>
 
-  <section class="alt"><div class="wrap">
+  <section><div class="wrap">
     <div class="section-head"><h2>Questions we expect</h2></div>
     <details><summary>Does PM Tracker need the internet?</summary><p>Normal operation doesn't depend on any outside service.</p></details>
     <details><summary>Is it validated out of the box?</summary><p>No. Validation is always specific to your site, and your team owns it. Talk to us about what you need.</p></details>
     <details><summary>Do we need Forge to use it?</summary><p>No. PM Tracker is sold on its own. It's also the maintenance module inside <a href="../forge/">Forge</a>, for shops that want both in one system.</p></details>
-    <details><summary>How much does it cost?</summary><p>We quote each plant individually. Ask us for a quote.</p></details>
+    <details><summary>How much does it cost?</summary><p>Up to <span data-price="pm-free-machines">5</span> machines are free. Above that, you pay per machine per month. <a href="../pricing/#pm-pricing">See pricing and the calculator</a>.</p></details>
   </div></section>
 
   <section class="band"><div class="wrap">
     <h2>See PM Tracker on your equipment list</h2>
-    <div class="cta-row"><a class="btn" href="../contact/?product=pm-tracker">Request a demo</a></div>
+    <div class="cta-row">
+      <a class="btn" href="../contact/?product=pm-tracker">Request a demo</a>
+      <a class="btn ghost" href="../pricing/#pm-pricing">See pricing</a>
+    </div>
   </div></section>
 </main>
 
 <footer class="site-foot"><div class="wrap">
   <span>© 2026 Forge and PM Tracker</span>
   <nav aria-label="Footer">
-    <a href="../forge/">Forge</a><a href="./">PM Tracker</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a>
+    <a href="../forge/">Forge</a><a href="./">PM Tracker</a><a href="../pricing/">Pricing</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a>
   </nav>
 </div></footer>
+<script src="../assets/site.js"></script>
 </body>
 </html>
