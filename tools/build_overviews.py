@@ -101,7 +101,7 @@ PRODUCTS = {
         ],
         "shots": [
             ("forge-job-schedule.png", "The job schedule flags late work."),
-            ("forge-sales-order.png", "A sales order linked to its job."),
+            ("forge-machine-board.png", "The machine board gives each machine a lane."),
         ],
         "trust_title": "Designed to support regulated work",
         "trust": "Forge supports practices that AS9100, ISO 13485 and 21 CFR Part 11 ask for, including audit trails, electronic signatures and controlled documents. Certification and validation remain with your shop. Forge runs on your own PC or server.",
