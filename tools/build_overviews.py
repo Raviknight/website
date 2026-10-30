@@ -118,7 +118,7 @@ PRODUCTS = {
             "Teams keeping records in Excel, where anyone can overwrite a cell and finding out what's overdue means asking around.",
             "People who have never used maintenance software. Import your asset and PM lists and start small.",
         ],
-        "hero": ("pm-dashboard.png", "The dashboard shows what's overdue and which machines need attention."),
+        "hero": ("pm-dashboard.png", "The dashboard shows what's overdue, which machines are on hold and what's waiting for approval."),
         "features": [
             ("Drag-and-drop planning", "Supervisors move PMs where they fit as the week changes."),
             ("Auto scheduling", "If nobody has planned the week, the work is scheduled and marked as auto-scheduled."),
@@ -147,7 +147,7 @@ with tempfile.TemporaryDirectory() as tmp:
         page.write_text(document(product), encoding="utf-8")
         subprocess.run(
             [EDGE, "--headless", "--disable-gpu", "--no-pdf-header-footer",
-             f"--user-data-dir={Path(tmp) / 'edge'}",
+             f"--user-data-dir={Path(tmp) / ('edge-' + filename)}",  # a shared profile can hang the next run
              f"--print-to-pdf={OUT / filename}", page.as_uri()],
             check=True, capture_output=True, timeout=120,
         )

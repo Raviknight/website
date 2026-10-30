@@ -25,7 +25,7 @@ Run `python tools/build_overviews.py` after changing screenshots or wording, or 
 
 - [ ] Paste the Web3Forms key into `assets/site.js`, then send a test message.
 - [ ] Create a GoatCounter site and paste its code into `assets/site.js` to switch on analytics.
-- [ ] Seed a fictional company with on-time work and re-shoot both products' screenshots, plus the Forge machine board.
+- [ ] Seed a fictional company with on-time work and re-shoot Forge's screenshots, plus its machine board. PM Tracker's were re-shot on 2026-10-30 from staged demo data, so keep the "Sample data" labels.
 - [ ] Add the demo videos (marked on the product pages).
 - [ ] Swap the email in `assets/site.js` for the dedicated address.
 - [ ] Remove `<meta name="robots" content="noindex">` from every page.
