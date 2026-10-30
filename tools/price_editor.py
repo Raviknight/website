@@ -105,7 +105,9 @@ with forge_tab:
     )
 
 with pm_tab:
-    free_months = st.number_input("Gift months for new customers", 0, value=current["pm_tracker"]["free_months"], step=1)
+    left, right = st.columns(2)
+    free_months = left.number_input("Gift trial licence, months (for people who contact us)", 0, value=current["pm_tracker"]["free_months"], step=1)
+    grace_days = right.number_input("Grace period after it ends, days", 0, value=current["pm_tracker"]["grace_days"], step=1)
 
     st.subheader("Price bands")
     st.caption("A plant's band sets the price of all its machines. Each row runs from the end of the row above up to its limit. The last limit is the machine cap: above it, the site says 'Contact us'. Add a row for a new band.")
@@ -145,6 +147,7 @@ data = {
     },
     "pm_tracker": {
         "free_months": int(free_months),
+        "grace_days": int(grace_days),
         "tiers": [
             {"up_to": clean_number(row["up_to"]), "price": clean_number(row["price"])}
             for row in tiers.dropna(how="all").to_dict("records")

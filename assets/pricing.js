@@ -53,9 +53,17 @@ function renderForge(forge) {
 
 // The band a plant falls in sets the price of all its machines.
 function renderPm(pm) {
-  const gift = pm.free_months ? `New customers get their first ${pm.free_months} months as a gift. ` : "";
   document.querySelector("#pm-offer").textContent =
-    `${gift}Every plan includes unlimited users, and the price per machine drops as you add more.`;
+    "Every plan includes unlimited users, and the price per machine drops as you add more.";
+  const trial = document.querySelector("#pm-trial");
+  if (pm.free_months) {
+    trial.textContent =
+      `Contact us and we'll give you a ${pm.free_months}-month trial licence as a gift, ` +
+      `followed by a ${pm.grace_days}-day grace period. If you don't buy a licence after that, ` +
+      "PM Tracker goes read-only: you can still see all your data, and installing a licence unlocks it.";
+  } else {
+    trial.hidden = true;
+  }
 
   const rows = document.querySelector("#pm-tiers");
   const addRow = (label, cost) => {
@@ -85,9 +93,8 @@ function renderPm(pm) {
       result.textContent = `For ${machines} machines, contact us for a quote.`;
     } else {
       const monthly = machines * tier.price;
-      const after = pm.free_months ? `, after your ${pm.free_months}-month gift` : "";
       result.textContent =
-        `${money(monthly)} per month, or ${money(monthly * 12)} per year${after} ` +
+        `${money(monthly)} per month, or ${money(monthly * 12)} per year ` +
         `(${machines} × ${money(tier.price)}).`;
     }
   };

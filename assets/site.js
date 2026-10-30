@@ -30,6 +30,7 @@ if (document.querySelector("[data-price]")) {
     .then(({ forge, pm_tracker: pm }) => {
       const values = {
         "pm-free-months": pm.free_months,
+        "pm-grace-days": pm.grace_days,
         "forge-from": "$" + Math.min(...forge.plans.map((plan) => plan.price)),
         "forge-seat": forge.seat_label,
       };

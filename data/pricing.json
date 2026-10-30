@@ -41,6 +41,7 @@
   },
   "pm_tracker": {
     "free_months": 6,
+    "grace_days": 30,
     "tiers": [
       { "up_to": 15, "price": 5 },
       { "up_to": 50, "price": 4 },
