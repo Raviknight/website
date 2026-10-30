@@ -116,7 +116,7 @@ PRODUCTS = {
         "problems": [
             "Plants with PMs on paper, where sheets get lost and signed copies end up in binders.",
             "Teams keeping records in Excel, where anyone can overwrite a cell and finding out what's overdue means asking around.",
-            "People who have never used maintenance software. Import your asset and PM lists and start small.",
+            "People who have never used maintenance software. Import your asset list and start small.",
         ],
         "hero": ("pm-dashboard.png", "The dashboard shows what's overdue, which machines are on hold and what's waiting for approval."),
         "features": [

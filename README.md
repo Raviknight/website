@@ -31,6 +31,7 @@ Run `python tools/build_overviews.py` after changing screenshots or wording, or 
 - [ ] Remove `<meta name="robots" content="noindex">` from every page.
 - [ ] Replace "Forge + PM Tracker" with the company name, and add a logo.
 - [ ] Confirm the PM Tracker name.
+- [ ] Say "asset and PM imports" on the PM Tracker page and PDF only once PM import saves to the server. Check that asset import has reached a released build.
 - [ ] Never use PM Tracker's `login.png`, which shows demo passwords. Don't show drawings.
 - [ ] Re-check every claim with the product sessions. Don't say "compliant", "certified" or "validated", and don't name competitors.
 - [ ] Add real customer logos, results and quotes, with permission (marked on the home page).
