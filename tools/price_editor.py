@@ -105,7 +105,7 @@ with forge_tab:
     )
 
 with pm_tab:
-    free_months = st.number_input("Free months", 0, value=current["pm_tracker"]["free_months"], step=1)
+    free_months = st.number_input("Gift months for new customers", 0, value=current["pm_tracker"]["free_months"], step=1)
 
     st.subheader("Price bands")
     st.caption("A plant's band sets the price of all its machines. Each row runs from the end of the row above up to its limit. The last limit is the machine cap: above it, the site says 'Contact us'. Add a row for a new band.")

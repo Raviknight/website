@@ -53,9 +53,9 @@ function renderForge(forge) {
 
 // The band a plant falls in sets the price of all its machines.
 function renderPm(pm) {
-  const free = pm.free_months ? `The first ${pm.free_months} months are free. ` : "";
+  const gift = pm.free_months ? `New customers get their first ${pm.free_months} months as a gift. ` : "";
   document.querySelector("#pm-offer").textContent =
-    `${free}Every plan includes unlimited users, and the price per machine drops as you add more.`;
+    `${gift}Every plan includes unlimited users, and the price per machine drops as you add more.`;
 
   const rows = document.querySelector("#pm-tiers");
   const addRow = (label, cost) => {
@@ -85,7 +85,7 @@ function renderPm(pm) {
       result.textContent = `For ${machines} machines, contact us for a quote.`;
     } else {
       const monthly = machines * tier.price;
-      const after = pm.free_months ? `, after ${pm.free_months} free months` : "";
+      const after = pm.free_months ? `, after your ${pm.free_months}-month gift` : "";
       result.textContent =
         `${money(monthly)} per month, or ${money(monthly * 12)} per year${after} ` +
         `(${machines} × ${money(tier.price)}).`;
