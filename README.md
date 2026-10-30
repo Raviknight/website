@@ -21,7 +21,7 @@ No license or customer data belongs in this repo. It is public.
 - [ ] Replace "Forge + PM Tracker" with the company name, and add a logo.
 - [ ] Confirm the PM Tracker name.
 - [ ] Re-shoot the PM Tracker screenshots (the current ones are from July). Never use `login.png`, which shows demo passwords.
-- [ ] Add Forge screenshots from a fictional company. The existing demo drawings show a real company's title block.
+- [ ] Re-shoot the Forge screenshots from the latest build (the current ones are from September). Don't show drawings.
 - [ ] Re-check every claim with the product sessions. Don't say "compliant", "certified" or "validated", and don't name competitors.
 - [ ] Add real customer logos, results and quotes, with permission (marked on the home page).
 - [ ] Add pricing if you decide to publish it.
