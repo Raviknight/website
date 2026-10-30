@@ -51,25 +51,11 @@ function renderForge(forge) {
   update();
 }
 
-// Each machine pays the rate of the band it falls in, and the free machines are never charged.
-function pmCost(pm, machines) {
-  let monthly = 0;
-  let previous = pm.free_machines;
-  const lines = [];
-  for (const tier of pm.tiers) {
-    if (machines <= previous) break;
-    const count = Math.min(machines, tier.up_to) - previous;
-    monthly += count * tier.price;
-    lines.push(`${count} × ${money(tier.price)}`);
-    previous = tier.up_to;
-  }
-  return { monthly, lines, overCap: machines > pm.tiers[pm.tiers.length - 1].up_to };
-}
-
+// The band a plant falls in sets the price of all its machines.
 function renderPm(pm) {
+  const free = pm.free_months ? `The first ${pm.free_months} months are free. ` : "";
   document.querySelector("#pm-offer").textContent =
-    `Free for up to ${pm.free_machines} machines, for as long as you like. ` +
-    `For a bigger plant, the first ${pm.free_months} months are free.`;
+    `${free}Every plan includes unlimited users, and the price per machine drops as you add more.`;
 
   const rows = document.querySelector("#pm-tiers");
   const addRow = (label, cost) => {
@@ -78,27 +64,31 @@ function renderPm(pm) {
     row.firstChild.scope = "row";
     rows.append(row);
   };
-  addRow(`First ${pm.free_machines} machines`, "Free");
-  let from = pm.free_machines + 1;
+  let from = 1;
   pm.tiers.forEach((tier) => {
-    addRow(`Machines ${from} to ${tier.up_to}`, `${money(tier.price)} per machine per month`);
+    addRow(`${from} to ${tier.up_to} machines`, `${money(tier.price)} per machine per month`);
     from = tier.up_to + 1;
   });
   addRow(`More than ${from - 1} machines`, "Contact us");
+
+  const top = pm.tiers[pm.tiers.length - 1];
+  document.querySelector("#pm-band-note").textContent =
+    `Your band's price applies to all your machines. For example, ${top.up_to} machines at ` +
+    `${money(top.price)} comes to ${money(top.up_to * top.price)} per month.`;
 
   const input = document.querySelector("#pm-machines");
   const result = document.querySelector("#pm-result");
   const update = () => {
     const machines = Math.max(1, Math.floor(Number(input.value)) || 1);
-    const cost = pmCost(pm, machines);
-    if (cost.overCap) {
+    const tier = pm.tiers.find((t) => machines <= t.up_to);
+    if (!tier) {
       result.textContent = `For ${machines} machines, contact us for a quote.`;
-    } else if (machines <= pm.free_machines) {
-      result.textContent = `Free. ${machines} ${machines === 1 ? "machine is" : "machines are"} within the free plan.`;
     } else {
+      const monthly = machines * tier.price;
+      const after = pm.free_months ? `, after ${pm.free_months} free months` : "";
       result.textContent =
-        `${money(cost.monthly)} per month, or ${money(cost.monthly * 12)} per year, ` +
-        `after ${pm.free_months} free months (${cost.lines.join(" + ")}).`;
+        `${money(monthly)} per month, or ${money(monthly * 12)} per year${after} ` +
+        `(${machines} × ${money(tier.price)}).`;
     }
   };
   input.addEventListener("input", update);
@@ -112,6 +102,7 @@ fetch("../data/pricing.json", { cache: "no-cache" })
   })
   .then((pricing) => {
     document.querySelector("#price-note").textContent = pricing.note;
+    document.querySelector("#setup-note").textContent = pricing.setup_note;
     renderForge(pricing.forge);
     renderPm(pricing.pm_tracker);
   })

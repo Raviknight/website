@@ -1,5 +1,6 @@
 {
   "note": "These prices are indicative and may change.",
+  "setup_note": "Deployment is a one-time charge. It depends on the size of your company and the data you want imported or added to the system, so we quote it separately.",
   "forge": {
     "seat_label": "concurrent user",
     "plans": [
@@ -13,7 +14,7 @@
           "Jobs, travelers and the job schedule",
           "Purchasing, inventory and shipping",
           "NCR and CAPA",
-          "Free clock in and out on a floor terminal"
+          "Clock in and out, and job start and stop, on any terminal with unlimited operators"
         ]
       },
       {
@@ -34,12 +35,11 @@
       { "name": "Quality", "price": null, "unit": "", "summary": "Ballooning, IGS, gages and calibration" },
       { "name": "Document Control", "price": null, "unit": "", "summary": "Controlled documents, stored files and the form designer" },
       { "name": "Advanced Scheduling", "price": null, "unit": "", "summary": "The machine scheduling board" },
-      { "name": "Shop Floor", "price": null, "unit": "terminal", "summary": "Start and stop jobs on floor terminals" },
+      { "name": "Shop Floor", "price": null, "unit": "terminal", "summary": "More tools at the floor terminal. Ask us what's included." },
       { "name": "Maintenance", "price": null, "unit": "", "summary": "PM Tracker inside Forge" }
     ]
   },
   "pm_tracker": {
-    "free_machines": 5,
     "free_months": 6,
     "tiers": [
       { "up_to": 15, "price": 5 },

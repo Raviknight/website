@@ -1,6 +1,6 @@
 // Site settings. Paste each code here to switch the feature on.
 const CONTACT = {
-  web3formsKey: "", // from web3forms.com; until set, the form opens the visitor's email app
+  web3formsKey: "eacdeee0-60fd-43c5-8980-fc4e0c8dc4c5", // public by design; it can only send to our inbox
   email: ["26ravi.sharma", "gmail.com"], // split so simple scrapers miss it
   goatcounter: "", // the "yourcode" in yourcode.goatcounter.com; until set, no analytics run
 };
@@ -29,7 +29,6 @@ if (document.querySelector("[data-price]")) {
     .then((response) => response.json())
     .then(({ forge, pm_tracker: pm }) => {
       const values = {
-        "pm-free-machines": pm.free_machines,
         "pm-free-months": pm.free_months,
         "forge-from": "$" + Math.min(...forge.plans.map((plan) => plan.price)),
         "forge-seat": forge.seat_label,

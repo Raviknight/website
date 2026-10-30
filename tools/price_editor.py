@@ -27,15 +27,9 @@ def clean_number(value):
 
 
 def pm_cost(pm, machines):
-    monthly, previous, lines = 0, pm["free_machines"], []
-    for tier in pm["tiers"]:
-        if machines <= previous:
-            break
-        count = min(machines, tier["up_to"]) - previous
-        monthly += count * tier["price"]
-        lines.append(f"{count} x ${tier['price']:g}")
-        previous = tier["up_to"]
-    return monthly, lines
+    """The band a plant falls in sets the price of all its machines."""
+    tier = next(t for t in pm["tiers"] if machines <= t["up_to"])
+    return machines * tier["price"], f"{machines} x ${tier['price']:g}"
 
 
 def problems(data):
@@ -49,7 +43,7 @@ def problems(data):
     for module in forge["modules"]:
         if not module["name"]:
             found.append("Every module needs a name. Leave the price empty to show 'Ask us'.")
-    previous = pm["free_machines"]
+    previous = 0
     if not pm["tiers"]:
         found.append("PM Tracker needs at least one price band.")
     for tier in pm["tiers"]:
@@ -75,6 +69,7 @@ with st.sidebar:
     st.link_button("Open the live pricing page", LIVE)
 
 note = st.text_input("Note shown at the top of the pricing page", current["note"])
+setup_note = st.text_area("One-time deployment text", current["setup_note"])
 
 forge_tab, pm_tab = st.tabs(["Forge", "PM Tracker"])
 
@@ -110,12 +105,10 @@ with forge_tab:
     )
 
 with pm_tab:
-    left, right = st.columns(2)
-    free_machines = left.number_input("Machines that are always free", 0, value=current["pm_tracker"]["free_machines"], step=1)
-    free_months = right.number_input("Free months for bigger plants", 0, value=current["pm_tracker"]["free_months"], step=1)
+    free_months = st.number_input("Free months", 0, value=current["pm_tracker"]["free_months"], step=1)
 
     st.subheader("Price bands")
-    st.caption("Each row runs from the end of the row above up to its limit. The last limit is the machine cap: above it, the site says 'Contact us'. Add a row for a new band.")
+    st.caption("A plant's band sets the price of all its machines. Each row runs from the end of the row above up to its limit. The last limit is the machine cap: above it, the site says 'Contact us'. Add a row for a new band.")
     tiers = st.data_editor(
         pd.DataFrame(current["pm_tracker"]["tiers"], columns=["up_to", "price"]),
         num_rows="dynamic", use_container_width=True, hide_index=True, key="tiers",
@@ -127,6 +120,7 @@ with pm_tab:
 
 data = {
     "note": note,
+    "setup_note": setup_note,
     "forge": {
         "seat_label": seat_label,
         "plans": [
@@ -150,7 +144,6 @@ data = {
         ],
     },
     "pm_tracker": {
-        "free_machines": int(free_machines),
         "free_months": int(free_months),
         "tiers": [
             {"up_to": clean_number(row["up_to"]), "price": clean_number(row["price"])}
@@ -179,9 +172,9 @@ if not errors:
         if machines > data["pm_tracker"]["tiers"][-1]["up_to"]:
             st.info("Above the machine cap: the site says 'Contact us'.")
         else:
-            monthly, lines = pm_cost(data["pm_tracker"], machines)
+            monthly, line = pm_cost(data["pm_tracker"], machines)
             st.metric("PM Tracker per year", f"${monthly * 12:,.2f}", f"${monthly:,.2f} per month", delta_color="off")
-            st.caption(" + ".join(lines).replace("$", r"\$") or "Within the free plan")
+            st.caption(line.replace("$", r"\$"))
 
 st.divider()
 text = json.dumps(data, indent=2, ensure_ascii=False) + "\n"

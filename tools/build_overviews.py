@@ -135,7 +135,7 @@ PRODUCTS = {
             ("pm-live-board.png", "The live board's machine availability view."),
         ],
         "trust_title": "Built for regulated plants",
-        "trust": "Every action goes into an append-only audit trail, designed to support your validation. Access follows each person's level and discipline. PM Tracker runs on your own server, and licenses are checked locally.",
+        "trust": "Every action goes into an append-only audit trail, designed to support your validation. Access follows each person's level and discipline. PM Tracker runs on your own server, licenses are checked locally, and every plan includes unlimited users.",
         "next": "See PM Tracker on your equipment list.",
     },
 }
