@@ -61,7 +61,7 @@
         "name": "Shop Floor",
         "price": 2,
         "unit": "terminal",
-        "summary": "Documents and drawings at the terminal, downtime reasons and scrap at the machine, wall boards and live job displays"
+        "summary": "Documents and drawings at the terminal, downtime reasons and scrap at the machine, and wall boards"
       },
       {
         "name": "Maintenance",
