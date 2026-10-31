@@ -75,14 +75,18 @@
     "tiers": [
       {
         "up_to": 15,
-        "price": 5
+        "price": 6
       },
       {
         "up_to": 50,
-        "price": 4
+        "price": 5
       },
       {
         "up_to": 100,
+        "price": 4
+      },
+      {
+        "up_to": 250,
         "price": 3
       }
     ]
