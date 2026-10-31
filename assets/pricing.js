@@ -88,11 +88,8 @@ function renderPm(pm) {
   });
   addRow(`More than ${from - 1} machines`, "Contact us");
 
-  const top = pm.tiers[pm.tiers.length - 1];
   document.querySelector("#pm-band-note").textContent =
-    `Your band's price applies to all your machines. For example, ${top.up_to} machines at ` +
-    `${money(top.price)} comes to ${money(top.up_to * top.price)} per month. ` +
-    "Each band has a minimum charge, so your monthly price never drops when you add machines.";
+    "Your band's price applies to all your machines, subject to the minimum shown.";
 
   const input = document.querySelector("#pm-machines");
   const result = document.querySelector("#pm-result");
