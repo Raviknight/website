@@ -199,15 +199,17 @@ with publish_col:
     st.subheader("2. Publish")
     st.caption("Sends the saved prices to the public website. They appear about a minute later.")
     pending = git("status", "--porcelain", "--", "data/pricing.json").stdout.strip()
-    confirm = st.checkbox("Yes, make these prices public", disabled=not pending or changed)
-    if st.button("Publish", disabled=not (pending and confirm) or changed):
-        steps = [
-            git("add", "data/pricing.json"),
-            git("commit", "-m", "Update pricing", "--", "data/pricing.json"),
-            git("push"),
-        ]
-        failed = next((s for s in steps if s.returncode != 0), None)
-        if failed:
-            st.error(failed.stdout + failed.stderr)
+    unpushed = git("rev-list", "--count", "@{u}..HEAD").stdout.strip() not in ("", "0")  # an earlier push didn't finish
+    waiting = pending or unpushed
+    confirm = st.checkbox("Yes, make these prices public", disabled=not waiting or changed)
+    if st.button("Publish", disabled=not (waiting and confirm) or changed):
+        result = git("add", "data/pricing.json")
+        # A second click can find the commit already made, so only the push is left to do.
+        if result.returncode == 0 and git("diff", "--cached", "--quiet", "--", "data/pricing.json").returncode != 0:
+            result = git("commit", "-m", "Update pricing", "--", "data/pricing.json")
+        if result.returncode == 0:
+            result = git("push")
+        if result.returncode != 0:
+            st.error(result.stdout + result.stderr)
         else:
             st.success(f"Published. Check {LIVE} in about a minute.")
