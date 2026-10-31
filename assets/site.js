@@ -1,6 +1,6 @@
 // Site settings. Paste each code here to switch the feature on.
 const CONTACT = {
-  web3formsKey: "eacdeee0-60fd-43c5-8980-fc4e0c8dc4c5", // public by design; it can only send to our inbox
+  formspreeId: "", // the "abcd1234" in formspree.io/f/abcd1234; until set, Send opens the visitor's email app
   email: ["26ravi.sharma", "gmail.com"], // split so simple scrapers miss it
   goatcounter: "", // the "yourcode" in yourcode.goatcounter.com; until set, no analytics run
 };
@@ -12,6 +12,11 @@ document.querySelectorAll("[data-email]").forEach((a) => {
   a.href = "mailto:" + address;
   a.textContent = address;
 });
+
+if (CONTACT.formspreeId) {
+  document.querySelectorAll("[data-form-on]").forEach((node) => { node.hidden = false; });
+  document.querySelectorAll("[data-form-off]").forEach((node) => { node.hidden = true; });
+}
 
 if (CONTACT.goatcounter) {
   const counter = document.createElement("script");
@@ -104,25 +109,24 @@ if (form) {
     const data = new FormData(form);
     if (data.get("botcheck")) return; // honeypot: only bots fill this
 
-    if (!CONTACT.web3formsKey) {
+    if (!CONTACT.formspreeId) {
       openEmailApp(data);
       show("Your email app should open with your message. Press send there to reach us.", "ok");
       showDownloads(data);
       return;
     }
 
-    data.set("access_key", CONTACT.web3formsKey);
-    data.set("subject", subjectFor(data));
+    data.delete("botcheck");
+    data.set("_subject", subjectFor(data));
     button.disabled = true;
     show("Sending…", "");
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(`https://formspree.io/f/${CONTACT.formspreeId}`, {
         method: "POST",
         headers: { Accept: "application/json" },
         body: data,
       });
-      const result = await response.json();
-      if (!result.success) throw new Error(result.message);
+      if (!response.ok) throw new Error(response.status);
       show("Thanks, your message was sent. We'll reply by email.", "ok");
       showDownloads(data);
       countLead("lead-" + data.get("intent"));
