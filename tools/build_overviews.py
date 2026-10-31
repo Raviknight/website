@@ -128,7 +128,8 @@ PRODUCTS = {
             ("Breakdown requests", "Report a breakdown, get it repaired, then send it for QA review."),
             ("Machine holds", "Take a machine out of service, and lift the hold when it's ready."),
             ("Spare parts", "Track the spares your team uses and what's left in stock."),
-            ("Reports and history", "Maintenance cost reports and a printable history for each machine."),
+            ("Readings and failed checks", "Readings are judged against their limits, and a failed check offers a filled-in repair request."),
+            ("Reports and machine history", "Cost reports, and a printable history of each machine's PMs, repairs, holds, downtime and failed checks."),
         ],
         "shots": [
             ("pm-weekly-plan.png", "The weekly plan, by technician and day."),

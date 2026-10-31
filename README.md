@@ -33,7 +33,8 @@ Run `python tools/build_overviews.py` after changing screenshots or wording, or 
 - [ ] Remove `<meta name="robots" content="noindex">` from every page.
 - [ ] Replace "Forge + PM Tracker" with the company name, and add a logo.
 - [ ] Confirm the PM Tracker name.
-- [ ] Check that PM Tracker's asset and PM imports and its read-only state after a licence ends have reached a released build. The site already describes them. They were fixed on `dev` on 2026-10-30.
+- [ ] Check that PM Tracker's asset and PM imports, its read-only state after a licence ends, its reading limits, its repair requests from failed checks and its machine history report have reached a released build. The site already describes them. They were on `dev` on 2026-10-30.
+- [ ] Check that Forge's Shop Floor extras on the pricing page exist: documents and drawings at the terminal, downtime reasons and scrap at the machine, and wall boards and live job displays. Forge's session hadn't checked which are built as of 2026-10-30.
 - [ ] Never use PM Tracker's `login.png`, which shows demo passwords. Don't show drawings.
 - [ ] Re-check every claim with the product sessions. Don't say "compliant", "certified" or "validated", and don't name competitors.
 - [ ] Add real customer logos, results and quotes, with permission (marked on the home page).
