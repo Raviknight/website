@@ -27,9 +27,11 @@ def clean_number(value):
 
 
 def pm_cost(pm, machines):
-    """The band a plant falls in sets the price of all its machines."""
+    """The band a plant falls in sets the price of all its machines, down to the band's minimum."""
     tier = next(t for t in pm["tiers"] if machines <= t["up_to"])
-    return machines * tier["price"], f"{machines} x ${tier['price']:g}"
+    minimum = max((t["up_to"] * t["price"] for t in pm["tiers"] if t["up_to"] < tier["up_to"]), default=0)
+    monthly = max(machines * tier["price"], minimum)
+    return monthly, "This band's minimum charge" if monthly == minimum else f"{machines} x ${tier['price']:g}"
 
 
 def problems(data):
@@ -79,13 +81,13 @@ with forge_tab:
     st.subheader("Plans")
     st.caption("Separate the 'includes' items with a semicolon. Add a row for a new plan, or select a row and press Delete to remove it.")
     plans_df = pd.DataFrame(
-        [{"name": p["name"], "price": p["price"], "summary": p["summary"], "includes": "; ".join(p["includes"])}
+        [{"name": p["name"], "price": float(p["price"]), "summary": p["summary"], "includes": "; ".join(p["includes"])}
          for p in current["forge"]["plans"]]
     )
     plans = st.data_editor(
         plans_df, num_rows="dynamic", use_container_width=True, hide_index=True, key="plans",
         column_config={
-            "price": st.column_config.NumberColumn("price ($/month)", min_value=0.0, format="$%.2f"),
+            "price": st.column_config.NumberColumn("price ($/month)", min_value=0.0, step=0.01, format="$%.2f"),
             "includes": st.column_config.TextColumn("includes", width="large"),
         },
     )
@@ -94,11 +96,11 @@ with forge_tab:
     modules_note = st.text_input("Text above the modules table", current["forge"]["modules_note"])
     st.caption("Leave the price empty to show 'Ask us'. Leave the unit empty to charge per Forge user.")
     modules_df = pd.DataFrame(current["forge"]["modules"], columns=["name", "price", "unit", "summary"])
-    modules_df["price"] = pd.to_numeric(modules_df["price"], errors="coerce")
+    modules_df["price"] = pd.to_numeric(modules_df["price"], errors="coerce").astype(float)
     modules = st.data_editor(
         modules_df, num_rows="dynamic", use_container_width=True, hide_index=True, key="modules",
         column_config={
-            "price": st.column_config.NumberColumn("price ($/month)", min_value=0.0, format="$%.2f"),
+            "price": st.column_config.NumberColumn("price ($/month)", min_value=0.0, step=0.01, format="$%.2f"),
             "unit": st.column_config.TextColumn("charged per (for example terminal)"),
             "summary": st.column_config.TextColumn("what it adds", width="large"),
         },
@@ -110,13 +112,13 @@ with pm_tab:
     grace_days = right.number_input("Grace period after it ends, days", 0, value=current["pm_tracker"]["grace_days"], step=1)
 
     st.subheader("Price bands")
-    st.caption("A plant's band sets the price of all its machines. Each row runs from the end of the row above up to its limit. The last limit is the machine cap: above it, the site says 'Contact us'. Add a row for a new band.")
+    st.caption("A plant's band sets the price of all its machines. Each band's minimum charge is the most a smaller plant pays, so a bill never drops when machines are added. Each row runs from the end of the row above up to its limit. The last limit is the machine cap: above it, the site says 'Contact us'. Add a row for a new band.")
     tiers = st.data_editor(
-        pd.DataFrame(current["pm_tracker"]["tiers"], columns=["up_to", "price"]),
+        pd.DataFrame(current["pm_tracker"]["tiers"], columns=["up_to", "price"]).astype({"price": float}),
         num_rows="dynamic", use_container_width=True, hide_index=True, key="tiers",
         column_config={
             "up_to": st.column_config.NumberColumn("up to this many machines", min_value=1, step=1, format="%d"),
-            "price": st.column_config.NumberColumn("price per machine per month", min_value=0.0, format="$%.2f"),
+            "price": st.column_config.NumberColumn("price per machine per month", min_value=0.0, step=0.01, format="$%.2f"),
         },
     )
 

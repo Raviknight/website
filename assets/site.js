@@ -28,10 +28,11 @@ if (document.querySelector("[data-price]")) {
   fetch(new URL("data/pricing.json", root), { cache: "no-cache" })
     .then((response) => response.json())
     .then(({ forge, pm_tracker: pm }) => {
+      const from = Math.min(...forge.plans.map((plan) => plan.price));
       const values = {
         "pm-free-months": pm.free_months,
         "pm-grace-days": pm.grace_days,
-        "forge-from": "$" + Math.min(...forge.plans.map((plan) => plan.price)),
+        "forge-from": "$" + (Number.isInteger(from) ? from : from.toFixed(2)),
         "forge-seat": forge.seat_label,
       };
       document.querySelectorAll("[data-price]").forEach((node) => {

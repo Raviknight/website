@@ -1,5 +1,8 @@
 // Builds the pricing page from data/pricing.json. Edit prices with tools/price_editor.py.
-const money = (n) => "$" + n.toLocaleString("en-US", { maximumFractionDigits: 2 });
+const money = (n) => "$" + n.toLocaleString("en-US", {
+  minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
+  maximumFractionDigits: 2,
+});
 const el = (tag, className, text) => {
   const node = document.createElement(tag);
   if (className) node.className = className;
@@ -51,6 +54,10 @@ function renderForge(forge) {
   update();
 }
 
+// A band's minimum is the most any smaller plant pays, so adding machines never lowers the bill.
+const pmMinimum = (tiers, tier) =>
+  Math.max(0, ...tiers.filter((t) => t.up_to < tier.up_to).map((t) => t.up_to * t.price));
+
 // The band a plant falls in sets the price of all its machines.
 function renderPm(pm) {
   document.querySelector("#pm-offer").textContent =
@@ -74,7 +81,9 @@ function renderPm(pm) {
   };
   let from = 1;
   pm.tiers.forEach((tier) => {
-    addRow(`${from} to ${tier.up_to} machines`, `${money(tier.price)} per machine per month`);
+    const minimum = pmMinimum(pm.tiers, tier);
+    const floor = minimum > from * tier.price ? `, ${money(minimum)} minimum` : "";
+    addRow(`${from} to ${tier.up_to} machines`, `${money(tier.price)} per machine per month${floor}`);
     from = tier.up_to + 1;
   });
   addRow(`More than ${from - 1} machines`, "Contact us");
@@ -82,7 +91,8 @@ function renderPm(pm) {
   const top = pm.tiers[pm.tiers.length - 1];
   document.querySelector("#pm-band-note").textContent =
     `Your band's price applies to all your machines. For example, ${top.up_to} machines at ` +
-    `${money(top.price)} comes to ${money(top.up_to * top.price)} per month.`;
+    `${money(top.price)} comes to ${money(top.up_to * top.price)} per month. ` +
+    "Each band has a minimum charge, so your monthly price never drops when you add machines.";
 
   const input = document.querySelector("#pm-machines");
   const result = document.querySelector("#pm-result");
@@ -92,10 +102,10 @@ function renderPm(pm) {
     if (!tier) {
       result.textContent = `For ${machines} machines, contact us for a quote.`;
     } else {
-      const monthly = machines * tier.price;
-      result.textContent =
-        `${money(monthly)} per month, or ${money(monthly * 12)} per year ` +
-        `(${machines} × ${money(tier.price)}).`;
+      const minimum = pmMinimum(pm.tiers, tier);
+      const monthly = Math.max(machines * tier.price, minimum);
+      const how = monthly === minimum ? "this band's minimum charge" : `${machines} × ${money(tier.price)}`;
+      result.textContent = `${money(monthly)} per month, or ${money(monthly * 12)} per year (${how}).`;
     }
   };
   input.addEventListener("input", update);
