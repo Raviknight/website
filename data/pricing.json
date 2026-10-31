@@ -6,7 +6,7 @@
     "plans": [
       {
         "name": "Core",
-        "price": 5,
+        "price": 7,
         "summary": "Runs a job from quote to invoice.",
         "includes": [
           "Quotes, sales orders and invoicing",
@@ -19,7 +19,7 @@
       },
       {
         "name": "Complete",
-        "price": 12,
+        "price": 15,
         "summary": "Adds what regulated shops usually need.",
         "includes": [
           "Everything in Core",
@@ -31,21 +31,60 @@
     ],
     "modules_note": "Buy modules on top of Core when you need them. Each one has its own price.",
     "modules": [
-      { "name": "Change Control", "price": null, "unit": "", "summary": "Engineering and document change notices" },
-      { "name": "Quality", "price": null, "unit": "", "summary": "Ballooning, IGS, gages and calibration" },
-      { "name": "Document Control", "price": null, "unit": "", "summary": "Controlled documents, stored files and the form designer" },
-      { "name": "Advanced Scheduling", "price": null, "unit": "", "summary": "The machine scheduling board" },
-      { "name": "Shop Floor", "price": null, "unit": "terminal", "summary": "Documents and drawings at the terminal, downtime reasons and scrap at the machine, wall boards and live job displays" },
-      { "name": "Maintenance", "price": null, "unit": "", "summary": "PM Tracker inside Forge" }
+      {
+        "name": "Change Control",
+        "price": 2,
+        "unit": "",
+        "summary": "Engineering and document change notices"
+      },
+      {
+        "name": "Quality",
+        "price": 2,
+        "unit": "",
+        "summary": "Ballooning, IGS, gages and calibration"
+      },
+      {
+        "name": "Document Control",
+        "price": 2,
+        "unit": "",
+        "summary": "Controlled documents, stored files and the form designer"
+      },
+      {
+        "name": "Advanced Scheduling",
+        "price": 2,
+        "unit": "",
+        "summary": "The machine scheduling board"
+      },
+      {
+        "name": "Shop Floor",
+        "price": 2,
+        "unit": "terminal",
+        "summary": "Documents and drawings at the terminal, downtime reasons and scrap at the machine, wall boards and live job displays"
+      },
+      {
+        "name": "Maintenance",
+        "price": null,
+        "unit": "",
+        "summary": "PM Tracker inside Forge"
+      }
     ]
   },
   "pm_tracker": {
     "free_months": 6,
     "grace_days": 30,
     "tiers": [
-      { "up_to": 15, "price": 5 },
-      { "up_to": 50, "price": 4 },
-      { "up_to": 100, "price": 3 }
+      {
+        "up_to": 15,
+        "price": 5
+      },
+      {
+        "up_to": 50,
+        "price": 4
+      },
+      {
+        "up_to": 100,
+        "price": 3
+      }
     ]
   }
 }
