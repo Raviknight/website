@@ -113,6 +113,7 @@ if (form) {
 
     data.set("access_key", CONTACT.web3formsKey);
     data.set("subject", subjectFor(data));
+    data.set("from_name", "Forge + PM Tracker website"); // otherwise the email is from "Notifications"
     button.disabled = true;
     show("Sending…", "");
     try {

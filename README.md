@@ -23,7 +23,7 @@ Run `python tools/build_overviews.py` after changing screenshots or wording, or 
 
 ## Before launch
 
-- [ ] Paste the Web3Forms key into `assets/site.js`, then send a test message.
+- [x] Paste the Web3Forms key into `assets/site.js`, then send a test message. It arrived on 2026-10-31.
 - [ ] Create a GoatCounter site and paste its code into `assets/site.js` to switch on analytics.
 - [ ] Check the demo customer names in Forge's screenshots against real companies (Summit Surgical, Horizon Avionics, Keystone Orthopedics and others). Keep the "Sample data" labels on all screenshots, because the data is staged.
 - [ ] Don't claim digital inspection recording at the floor station until it's built.
