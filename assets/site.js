@@ -68,6 +68,17 @@ if (form) {
     }
   }
 
+  // The trial licence is only offered for PM Tracker.
+  const matchProductToIntent = () => {
+    const trial = form.intent.value === "trial";
+    if (trial) form.product.value = "pm-tracker";
+    for (const option of form.product.options) {
+      option.disabled = trial && option.value !== "pm-tracker";
+    }
+  };
+  form.intent.addEventListener("change", matchProductToIntent);
+  matchProductToIntent();
+
   const show = (text, kind) => {
     status.textContent = text;
     status.className = "status " + kind;
@@ -129,6 +140,7 @@ if (form) {
       showDownloads(data);
       countLead("lead-" + data.get("intent"));
       form.reset();
+      matchProductToIntent();
     } catch {
       show(`That didn't send. Please email ${address} instead.`, "err");
     } finally {
