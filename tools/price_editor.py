@@ -7,6 +7,7 @@ import subprocess
 from pathlib import Path
 
 import pandas as pd
+import pytz
 import streamlit as st
 
 REPO = Path(__file__).resolve().parent.parent
@@ -73,6 +74,19 @@ with st.sidebar:
 note = st.text_input("Note shown at the top of the pricing page", current["note"])
 setup_note = st.text_area("One-time deployment text", current["setup_note"])
 
+with st.expander("Regional prices"):
+    st.caption(
+        "Visitors in these countries see every price at this percentage of the list price. "
+        "The site guesses the country from the visitor's time zone, and says nothing about it on the page. "
+        "Leave the list empty to show everyone the list price."
+    )
+    regional_now = current.get("regional", {"percent": 100, "countries": []})
+    countries = dict(sorted(pytz.country_names.items(), key=lambda item: item[1]))
+    regional_percent = st.number_input("Percentage of the list price", 1, 100, int(regional_now["percent"]), step=1)
+    regional_countries = st.multiselect(
+        "Countries", list(countries), default=regional_now["countries"], format_func=lambda code: countries[code]
+    )
+
 forge_tab, pm_tab = st.tabs(["Forge", "PM Tracker"])
 
 with forge_tab:
@@ -125,6 +139,7 @@ with pm_tab:
 data = {
     "note": note,
     "setup_note": setup_note,
+    "regional": {"percent": int(regional_percent), "countries": sorted(regional_countries)},
     "forge": {
         "seat_label": seat_label,
         "plans": [
@@ -172,6 +187,8 @@ if not errors:
         users = st.number_input("Forge users", 1, value=10, step=1)
         price = next(p["price"] for p in data["forge"]["plans"] if p["name"] == plan_name)
         st.metric("Forge per year", f"${price * users * 12:,.2f}", f"${price * users:,.2f} per month", delta_color="off")
+        if regional_countries:
+            st.caption(f"Regional: \\${price * users * 12 * regional_percent / 100:,.2f} per year")
     with right:
         machines = st.number_input("PM Tracker machines", 1, value=20, step=1)
         if machines > data["pm_tracker"]["tiers"][-1]["up_to"]:
@@ -180,6 +197,8 @@ if not errors:
             monthly, line = pm_cost(data["pm_tracker"], machines)
             st.metric("PM Tracker per year", f"${monthly * 12:,.2f}", f"${monthly:,.2f} per month", delta_color="off")
             st.caption(line.replace("$", r"\$"))
+            if regional_countries:
+                st.caption(f"Regional: \\${monthly * 12 * regional_percent / 100:,.2f} per year")
 
 st.divider()
 text = json.dumps(data, indent=2, ensure_ascii=False) + "\n"

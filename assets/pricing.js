@@ -54,6 +54,18 @@ function renderForge(forge) {
   update();
 }
 
+// Visitors in the regional price countries see every price scaled, so minimums and totals follow.
+function regionalPrices(pricing) {
+  const factor = typeof priceFactor === "function" ? priceFactor(pricing) : 1;
+  if (factor === 1) return pricing;
+  const scale = (price) => (price === null || price === undefined ? price : Math.round(price * factor * 100) / 100);
+  const copy = structuredClone(pricing);
+  copy.forge.plans.forEach((plan) => { plan.price = scale(plan.price); });
+  copy.forge.modules.forEach((module) => { module.price = scale(module.price); });
+  copy.pm_tracker.tiers.forEach((tier) => { tier.price = scale(tier.price); });
+  return copy;
+}
+
 // A band's minimum is the most any smaller plant pays, so adding machines never lowers the bill.
 const pmMinimum = (tiers, tier) =>
   Math.max(0, ...tiers.filter((t) => t.up_to < tier.up_to).map((t) => t.up_to * t.price));
@@ -114,7 +126,8 @@ fetch("../data/pricing.json", { cache: "no-cache" })
     if (!response.ok) throw new Error(response.status);
     return response.json();
   })
-  .then((pricing) => {
+  .then((data) => {
+    const pricing = regionalPrices(data);
     document.querySelector("#price-note").textContent = pricing.note;
     document.querySelector("#setup-note").textContent = pricing.setup_note;
     renderForge(pricing.forge);

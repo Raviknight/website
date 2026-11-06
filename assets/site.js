@@ -27,8 +27,10 @@ if (CONTACT.goatcounter) {
 if (document.querySelector("[data-price]")) {
   fetch(new URL("data/pricing.json", root), { cache: "no-cache" })
     .then((response) => response.json())
-    .then(({ forge, pm_tracker: pm }) => {
-      const from = Math.min(...forge.plans.map((plan) => plan.price));
+    .then((pricing) => {
+      const { forge, pm_tracker: pm } = pricing;
+      const factor = typeof priceFactor === "function" ? priceFactor(pricing) : 1;
+      const from = Math.round(Math.min(...forge.plans.map((plan) => plan.price)) * factor * 100) / 100;
       const values = {
         "pm-free-months": pm.free_months,
         "pm-grace-days": pm.grace_days,
