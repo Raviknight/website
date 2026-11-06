@@ -126,6 +126,7 @@
           "Breakdown requests with QA review, and machine holds",
           "Machine history and basic reports",
           "Dashboard, notifications and reminders",
+          "Parts used on every job, typed in with an optional cost",
           "Asset and PM imports, and file attachments",
           "Append-only audit trail and permissions by role",
           "One site"
@@ -140,7 +141,7 @@
           "Drag-and-drop weekly planning and auto scheduling",
           "Team availability and personal schedules",
           "Live board for a wall display",
-          "Spare parts and stock",
+          "A parts catalog with stock levels, automatic stock use and low-stock alerts",
           "Cost and analysis reports",
           "Multiple sites, and limiting people to certain machines"
         ]

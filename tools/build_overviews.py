@@ -128,7 +128,7 @@ PRODUCTS = {
             ("Machine history and reports", "A printable history of each machine's PMs, repairs, holds, downtime and failed checks, plus basic reports."),
             ("Complete: planning", "Drag-and-drop weekly planning, with auto scheduling when nobody has planned the week."),
             ("Complete: live board", "A wall display of work due, your team, machine availability and planned downtime."),
-            ("Complete: spares and costs", "Spare parts and stock, and reports on what maintenance is costing you."),
+            ("Complete: spares and costs", "A parts catalog with stock levels and low-stock alerts, and reports on what maintenance is costing you."),
             ("Complete: multiple sites", "Run more than one site, and limit people to the machines they work on."),
         ],
         "shots": [
