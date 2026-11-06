@@ -303,3 +303,4 @@ textarea { min-height: 130px; resize: vertical; }
 .tile-machine-shops { --photo: url(img/tile-machine-shop.jpg); }
 .tile-aerospace { --photo: url(img/tile-aerospace.jpg); }
 .tile-regulated-plants { --photo: url(img/tile-regulated-plant.jpg); }
+.tile-medical { --photo: url(img/tile-medical.jpg); }
