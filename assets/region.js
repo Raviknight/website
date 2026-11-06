@@ -57,8 +57,9 @@ function localPricing(pricing) {
     }
   };
   const name = CURRENCY_NAMES[code] || code;
+  // Visitors shown their own currency need no explanation; others learn we can quote in theirs.
   const note = OWN_CURRENCY.includes(country)
-    ? `Prices are in ${name}.`
+    ? ""
     : `Prices are in ${name}, and we can quote in your local currency.`;
   return { code, convert, format, note };
 }

@@ -75,7 +75,7 @@ with st.sidebar:
 
 note = st.text_input(
     "Note shown at the top of the pricing page", current["note"],
-    help="The site puts a sentence about the visitor's currency in front of this, for example 'Prices are in Indian rupees.'",
+    help="Visitors shown a currency other than their own also see a sentence in front of this, for example 'Prices are in euros, and we can quote in your local currency.'",
 )
 setup_note = st.text_area("One-time deployment text", current["setup_note"])
 
