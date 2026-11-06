@@ -114,6 +114,38 @@
   "pm_tracker": {
     "free_months": 6,
     "grace_days": 30,
+    "plans": [
+      {
+        "name": "Core",
+        "extra": 0,
+        "summary": "Runs your PM program and keeps its records.",
+        "includes": [
+          "PMs, checklists and reusable templates",
+          "Work orders with supervisor approval, and printable work orders",
+          "Readings with upper and lower limits, and repair requests from failed checks",
+          "Breakdown requests with QA review, and machine holds",
+          "Machine history and basic reports",
+          "Dashboard, notifications and reminders",
+          "Asset and PM imports, and file attachments",
+          "Append-only audit trail and permissions by role",
+          "One site"
+        ]
+      },
+      {
+        "name": "Complete",
+        "extra": 2,
+        "summary": "Adds planning, stock and cost reports.",
+        "includes": [
+          "Everything in Core",
+          "Drag-and-drop weekly planning and auto scheduling",
+          "Team availability and personal schedules",
+          "Live board for a wall display",
+          "Spare parts and stock",
+          "Cost and analysis reports",
+          "Multiple sites, and limiting people to certain machines"
+        ]
+      }
+    ],
     "tiers": [
       {
         "up_to": 15,

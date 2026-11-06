@@ -57,15 +57,19 @@ function renderForge(forge) {
 
 // Every price is converted to the visitor's currency, with any regional price applied,
 // so minimums and calculator totals follow from the converted prices.
+// Each PM Tracker plan gets its own bands: the band price plus the plan's extra per machine.
 function localise(pricing) {
-  if (typeof localPricing !== "function") return { pricing, note: "" };
-  const local = localPricing(pricing);
-  money = local.format;
+  const local = typeof localPricing === "function" ? localPricing(pricing) : null;
+  const convert = local ? local.convert : (n) => n;
+  if (local) money = local.format;
   const copy = structuredClone(pricing);
-  copy.forge.plans.forEach((plan) => { plan.price = local.convert(plan.price); });
-  copy.forge.modules.forEach((module) => { module.price = local.convert(module.price); });
-  copy.pm_tracker.tiers.forEach((tier) => { tier.price = local.convert(tier.price); });
-  return { pricing: copy, note: local.note };
+  copy.forge.plans.forEach((plan) => { plan.price = convert(plan.price); });
+  copy.forge.modules.forEach((module) => { module.price = convert(module.price); });
+  const pm = copy.pm_tracker;
+  pm.plans.forEach((plan) => {
+    plan.tiers = pm.tiers.map((tier) => ({ up_to: tier.up_to, price: convert(tier.price + (plan.extra || 0)) }));
+  });
+  return { pricing: copy, note: local ? local.note : "" };
 }
 
 // A band's minimum is the most any smaller plant pays, so adding machines never lowers the bill.
@@ -75,7 +79,7 @@ const pmMinimum = (tiers, tier) =>
 // The band a plant falls in sets the price of all its machines.
 function renderPm(pm) {
   document.querySelector("#pm-offer").textContent =
-    "Every plan includes unlimited users, and the price per machine drops as you add more.";
+    "Two plans, both with unlimited users. The price per machine drops as you add more.";
   const trial = document.querySelector("#pm-trial");
   if (pm.free_months) {
     trial.textContent =
@@ -86,39 +90,70 @@ function renderPm(pm) {
     trial.hidden = true;
   }
 
+  const cards = document.querySelector("#pm-plans");
+  pm.plans.forEach((plan) => {
+    const card = el("article", "card product");
+    card.append(el("h3", "", plan.name));
+    const price = el("p", "price");
+    const cheapest = plan.tiers[plan.tiers.length - 1].price;
+    price.append("From ", el("strong", "", money(cheapest)), " per machine per month");
+    card.append(price, el("p", "", plan.summary));
+    const list = el("ul", "ticks");
+    plan.includes.forEach((item) => list.append(el("li", "", item)));
+    card.append(list);
+    cards.append(card);
+  });
+
+  const head = document.querySelector("#pm-tiers-head");
+  pm.plans.forEach((plan) => {
+    const cell = el("th", "", plan.name);
+    cell.scope = "col";
+    head.append(cell);
+  });
   const rows = document.querySelector("#pm-tiers");
-  const addRow = (label, cost) => {
-    const row = el("tr");
-    row.append(el("th", "", label), el("td", "", cost));
-    row.firstChild.scope = "row";
-    rows.append(row);
-  };
   let from = 1;
-  pm.tiers.forEach((tier) => {
-    const minimum = pmMinimum(pm.tiers, tier);
-    const floor = minimum > from * tier.price ? `, ${money(minimum)} minimum` : "";
-    addRow(`${from} to ${tier.up_to} machines`, `${money(tier.price)} per machine per month${floor}`);
+  pm.tiers.forEach((tier, i) => {
+    const row = el("tr");
+    row.append(el("th", "", `${from} to ${tier.up_to} machines`));
+    row.firstChild.scope = "row";
+    pm.plans.forEach((plan) => {
+      const band = plan.tiers[i];
+      const minimum = pmMinimum(plan.tiers, band);
+      const floor = minimum > from * band.price ? `, ${money(minimum)} minimum` : "";
+      row.append(el("td", "", `${money(band.price)} per machine per month${floor}`));
+    });
+    rows.append(row);
     from = tier.up_to + 1;
   });
-  addRow(`More than ${from - 1} machines`, "Contact us");
+  const last = el("tr");
+  last.append(el("th", "", `More than ${from - 1} machines`));
+  last.firstChild.scope = "row";
+  const contact = el("td", "", "Contact us");
+  contact.colSpan = pm.plans.length;
+  last.append(contact);
+  rows.append(last);
 
   document.querySelector("#pm-band-note").textContent =
     "Your band's price applies to all your machines, subject to the minimum shown.";
 
+  const select = document.querySelector("#pm-plan");
+  pm.plans.forEach((plan, i) => select.append(new Option(plan.name, i)));
   const input = document.querySelector("#pm-machines");
   const result = document.querySelector("#pm-result");
   const update = () => {
+    const tiers = pm.plans[select.value].tiers;
     const machines = Math.max(1, Math.floor(Number(input.value)) || 1);
-    const tier = pm.tiers.find((t) => machines <= t.up_to);
+    const tier = tiers.find((t) => machines <= t.up_to);
     if (!tier) {
       result.textContent = `For ${machines} machines, contact us for a quote.`;
     } else {
-      const minimum = pmMinimum(pm.tiers, tier);
+      const minimum = pmMinimum(tiers, tier);
       const monthly = Math.max(machines * tier.price, minimum);
       const how = monthly === minimum ? "this band's minimum charge" : `${machines} × ${money(tier.price)}`;
       result.textContent = `${money(monthly)} per month, or ${money(monthly * 12)} per year (${how}).`;
     }
   };
+  select.addEventListener("change", update);
   input.addEventListener("input", update);
   update();
 }

@@ -29,10 +29,11 @@ def clean_number(value):
     return None if value is None or pd.isna(value) else (int(value) if float(value).is_integer() else float(value))
 
 
-def pm_cost(pm, machines):
+def pm_cost(pm, machines, extra=0):
     """The band a plant falls in sets the price of all its machines, down to the band's minimum."""
-    tier = next(t for t in pm["tiers"] if machines <= t["up_to"])
-    minimum = max((t["up_to"] * t["price"] for t in pm["tiers"] if t["up_to"] < tier["up_to"]), default=0)
+    tiers = [{"up_to": t["up_to"], "price": t["price"] + extra} for t in pm["tiers"]]
+    tier = next(t for t in tiers if machines <= t["up_to"])
+    minimum = max((t["up_to"] * t["price"] for t in tiers if t["up_to"] < tier["up_to"]), default=0)
     monthly = max(machines * tier["price"], minimum)
     return monthly, "This band's minimum charge" if monthly == minimum else f"{machines} x ${tier['price']:g}"
 
@@ -49,6 +50,11 @@ def problems(data):
         if not module["name"]:
             found.append("Every module needs a name. Leave the price empty to show 'Ask us'.")
     previous = 0
+    if not pm["plans"]:
+        found.append("PM Tracker needs at least one plan.")
+    for plan in pm["plans"]:
+        if not plan["name"]:
+            found.append("Every PM Tracker plan needs a name.")
     if not pm["tiers"]:
         found.append("PM Tracker needs at least one price band.")
     for tier in pm["tiers"]:
@@ -154,6 +160,21 @@ with pm_tab:
     free_months = left.number_input("Gift trial licence, months (for people who contact us)", 0, value=current["pm_tracker"]["free_months"], step=1)
     grace_days = right.number_input("Grace period after it ends, days", 0, value=current["pm_tracker"]["grace_days"], step=1)
 
+    st.subheader("Plans")
+    st.caption("Each plan pays the band price plus its extra per machine. Separate the 'includes' items with a semicolon.")
+    pm_plans = st.data_editor(
+        pd.DataFrame(
+            [{"name": p["name"], "extra": float(p.get("extra", 0)), "summary": p["summary"], "includes": "; ".join(p["includes"])}
+             for p in current["pm_tracker"].get("plans", [])],
+            columns=["name", "extra", "summary", "includes"],
+        ),
+        num_rows="dynamic", use_container_width=True, hide_index=True, key="pm_plans",
+        column_config={
+            "extra": st.column_config.NumberColumn("extra per machine per month", min_value=0.0, step=0.01, format="$%.2f"),
+            "includes": st.column_config.TextColumn("includes", width="large"),
+        },
+    )
+
     st.subheader("Price bands")
     st.caption("A plant's band sets the price of all its machines. Each band's minimum charge is the most a smaller plant pays, so a bill never drops when machines are added. Each row runs from the end of the row above up to its limit. The last limit is the machine cap: above it, the site says 'Contact us'. Add a row for a new band.")
     tiers = st.data_editor(
@@ -161,7 +182,7 @@ with pm_tab:
         num_rows="dynamic", use_container_width=True, hide_index=True, key="tiers",
         column_config={
             "up_to": st.column_config.NumberColumn("up to this many machines", min_value=1, step=1, format="%d"),
-            "price": st.column_config.NumberColumn("price per machine per month", min_value=0.0, step=0.01, format="$%.2f"),
+            "price": st.column_config.NumberColumn("price per machine per month, before the plan's extra", min_value=0.0, step=0.01, format="$%.2f"),
         },
     )
 
@@ -195,6 +216,15 @@ data = {
     "pm_tracker": {
         "free_months": int(free_months),
         "grace_days": int(grace_days),
+        "plans": [
+            {
+                "name": clean_text(row["name"]),
+                "extra": clean_number(row["extra"]) or 0,
+                "summary": clean_text(row["summary"]),
+                "includes": [item.strip() for item in clean_text(row["includes"]).split(";") if item.strip()],
+            }
+            for row in pm_plans.dropna(how="all").to_dict("records")
+        ],
         "tiers": [
             {"up_to": clean_number(row["up_to"]), "price": clean_number(row["price"])}
             for row in tiers.dropna(how="all").to_dict("records")
@@ -220,11 +250,13 @@ if not errors:
         if regional_countries:
             st.caption(f"Regional: \\${price * users * 12 * regional_percent / 100:,.2f} per year")
     with right:
+        pm_plan = st.selectbox("PM Tracker plan", [p["name"] for p in data["pm_tracker"]["plans"]])
+        extra = next(p["extra"] for p in data["pm_tracker"]["plans"] if p["name"] == pm_plan)
         machines = st.number_input("PM Tracker machines", 1, value=20, step=1)
         if machines > data["pm_tracker"]["tiers"][-1]["up_to"]:
             st.info("Above the machine cap: the site says 'Contact us'.")
         else:
-            monthly, line = pm_cost(data["pm_tracker"], machines)
+            monthly, line = pm_cost(data["pm_tracker"], machines, extra)
             st.metric("PM Tracker per year", f"${monthly * 12:,.2f}", f"${monthly:,.2f} per month", delta_color="off")
             st.caption(line.replace("$", r"\$"))
             if regional_countries:
