@@ -6,7 +6,7 @@
     "plans": [
       {
         "name": "Core",
-        "price": 7,
+        "price": 25,
         "summary": "Runs a job from quote to invoice.",
         "includes": [
           "Quotes, sales orders and invoicing",
@@ -19,7 +19,7 @@
       },
       {
         "name": "Complete",
-        "price": 15,
+        "price": 40,
         "summary": "Adds what regulated shops usually need.",
         "includes": [
           "Everything in Core",
@@ -35,31 +35,31 @@
     "modules": [
       {
         "name": "Change Control",
-        "price": 2,
+        "price": 5,
         "unit": "",
         "summary": "Engineering and document change notices"
       },
       {
         "name": "Quality",
-        "price": 2,
+        "price": 5,
         "unit": "",
         "summary": "Ballooning, IGS, gages and calibration"
       },
       {
         "name": "Document Control",
-        "price": 2,
+        "price": 5,
         "unit": "",
         "summary": "Controlled documents, stored files and the form designer"
       },
       {
         "name": "Advanced Scheduling",
-        "price": 2,
+        "price": 5,
         "unit": "",
         "summary": "The machine scheduling board"
       },
       {
         "name": "Shop Floor",
-        "price": 2,
+        "price": 5,
         "unit": "terminal",
         "summary": "Documents and drawings at the terminal, downtime reasons and scrap at the machine, and wall boards"
       },
