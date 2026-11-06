@@ -111,7 +111,7 @@ PRODUCTS = {
         "title": "PM Tracker overview",
         "eyebrow": "PM Tracker maintenance software",
         "headline": "Get your PMs off paper and your records out of Excel.",
-        "lede": "A self-hosted maintenance system for manufacturers regulated by the FDA, EMA and Health Canada.",
+        "lede": "A self-hosted maintenance system for manufacturers regulated by the FDA, EMA, Health Canada and other health authorities.",
         "problem_title": "Who it's for",
         "problems": [
             "Plants with PMs on paper, where sheets get lost and signed copies end up in binders.",
