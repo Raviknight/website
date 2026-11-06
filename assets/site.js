@@ -29,12 +29,12 @@ if (document.querySelector("[data-price]")) {
     .then((response) => response.json())
     .then((pricing) => {
       const { forge, pm_tracker: pm } = pricing;
-      const factor = typeof priceFactor === "function" ? priceFactor(pricing) : 1;
-      const from = Math.round(Math.min(...forge.plans.map((plan) => plan.price)) * factor * 100) / 100;
+      const cheapest = Math.min(...forge.plans.map((plan) => plan.price));
+      const local = typeof localPricing === "function" ? localPricing(pricing) : null;
       const values = {
         "pm-free-months": pm.free_months,
         "pm-grace-days": pm.grace_days,
-        "forge-from": "$" + (Number.isInteger(from) ? from : from.toFixed(2)),
+        "forge-from": local ? local.format(local.convert(cheapest)) : "$" + cheapest,
         "forge-seat": forge.seat_label,
       };
       document.querySelectorAll("[data-price]").forEach((node) => {

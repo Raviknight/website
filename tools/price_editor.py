@@ -4,6 +4,7 @@ Edits data/pricing.json, which the pricing page reads. Nothing is public until y
 """
 import json
 import subprocess
+import urllib.request
 from pathlib import Path
 
 import pandas as pd
@@ -13,6 +14,7 @@ import streamlit as st
 REPO = Path(__file__).resolve().parent.parent
 DATA = REPO / "data" / "pricing.json"
 LIVE = "https://raviknight.github.io/website/pricing/"
+RATES = "https://api.frankfurter.dev/v1/latest?base=USD"  # European Central Bank reference rates
 
 
 def git(*args):
@@ -71,7 +73,10 @@ with st.sidebar:
         (st.success if result.returncode == 0 else st.error)(result.stdout + result.stderr)
     st.link_button("Open the live pricing page", LIVE)
 
-note = st.text_input("Note shown at the top of the pricing page", current["note"])
+note = st.text_input(
+    "Note shown at the top of the pricing page", current["note"],
+    help="The site puts a sentence about the visitor's currency in front of this, for example 'Prices are in Indian rupees.'",
+)
 setup_note = st.text_area("One-time deployment text", current["setup_note"])
 
 with st.expander("Regional prices"):
@@ -86,6 +91,30 @@ with st.expander("Regional prices"):
     regional_countries = st.multiselect(
         "Countries", list(countries), default=regional_now["countries"], format_func=lambda code: countries[code]
     )
+
+if "exchange" not in st.session_state:
+    st.session_state.exchange = current.get("exchange", {"date": "", "rates": {}})
+with st.expander("Exchange rates"):
+    st.caption(
+        "Enter prices in US dollars. Visitors whose currency is in this list see prices converted with these rates "
+        "and rounded to tidy amounts; everyone else sees US dollars. Update the rates now and then: the site only "
+        "changes when you publish."
+    )
+    exchange = st.session_state.exchange
+    st.write(f"Rates from {exchange['date'] or 'never'}, per US dollar.")
+    if st.button("Update exchange rates"):
+        try:
+            with urllib.request.urlopen(RATES, timeout=15) as response:
+                fetched = json.load(response)
+            st.session_state.exchange = {"date": fetched["date"], "rates": fetched["rates"]}
+            st.rerun()
+        except Exception as error:  # no internet, or the service is down
+            st.error(f"Couldn't get the rates: {error}")
+    if exchange["rates"]:
+        st.dataframe(
+            pd.DataFrame(sorted(exchange["rates"].items()), columns=["currency", "per US dollar"]),
+            hide_index=True, use_container_width=True,
+        )
 
 forge_tab, pm_tab = st.tabs(["Forge", "PM Tracker"])
 
@@ -140,6 +169,7 @@ data = {
     "note": note,
     "setup_note": setup_note,
     "regional": {"percent": int(regional_percent), "countries": sorted(regional_countries)},
+    "exchange": st.session_state.exchange,
     "forge": {
         "seat_label": seat_label,
         "plans": [

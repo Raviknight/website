@@ -1,5 +1,6 @@
 // Builds the pricing page from data/pricing.json. Edit prices with tools/price_editor.py.
-const money = (n) => "$" + n.toLocaleString("en-US", {
+// Set from the visitor's currency once the prices load.
+let money = (n) => "$" + n.toLocaleString("en-US", {
   minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
   maximumFractionDigits: 2,
 });
@@ -54,16 +55,17 @@ function renderForge(forge) {
   update();
 }
 
-// Visitors in the regional price countries see every price scaled, so minimums and totals follow.
-function regionalPrices(pricing) {
-  const factor = typeof priceFactor === "function" ? priceFactor(pricing) : 1;
-  if (factor === 1) return pricing;
-  const scale = (price) => (price === null || price === undefined ? price : Math.round(price * factor * 100) / 100);
+// Every price is converted to the visitor's currency, with any regional price applied,
+// so minimums and calculator totals follow from the converted prices.
+function localise(pricing) {
+  if (typeof localPricing !== "function") return { pricing, note: "" };
+  const local = localPricing(pricing);
+  money = local.format;
   const copy = structuredClone(pricing);
-  copy.forge.plans.forEach((plan) => { plan.price = scale(plan.price); });
-  copy.forge.modules.forEach((module) => { module.price = scale(module.price); });
-  copy.pm_tracker.tiers.forEach((tier) => { tier.price = scale(tier.price); });
-  return copy;
+  copy.forge.plans.forEach((plan) => { plan.price = local.convert(plan.price); });
+  copy.forge.modules.forEach((module) => { module.price = local.convert(module.price); });
+  copy.pm_tracker.tiers.forEach((tier) => { tier.price = local.convert(tier.price); });
+  return { pricing: copy, note: local.note };
 }
 
 // A band's minimum is the most any smaller plant pays, so adding machines never lowers the bill.
@@ -127,8 +129,8 @@ fetch("../data/pricing.json", { cache: "no-cache" })
     return response.json();
   })
   .then((data) => {
-    const pricing = regionalPrices(data);
-    document.querySelector("#price-note").textContent = pricing.note;
+    const { pricing, note } = localise(data);
+    document.querySelector("#price-note").textContent = [note, pricing.note].filter(Boolean).join(" ");
     document.querySelector("#setup-note").textContent = pricing.setup_note;
     renderForge(pricing.forge);
     renderPm(pricing.pm_tracker);
