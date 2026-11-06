@@ -36,17 +36,16 @@ function localPricing(pricing) {
     digits = new Intl.NumberFormat("en", { style: "currency", currency: code }).resolvedOptions().maximumFractionDigits;
   } catch (error) {}
 
-  // Converted prices are rounded to amounts a person would quote, so totals stay tidy.
+  // Converted prices are rounded up, never down, to amounts a person would quote:
+  // two significant figures from 100, whole numbers from 10, and quarters below that.
+  const up = (value, step) => Math.round(Math.ceil(value / step - 1e-9) * step * 100) / 100;
   const convert = (usd) => {
     if (usd === null || usd === undefined) return usd;
     const value = usd * factor * rate;
     if (code === "USD") return Math.round(value * 100) / 100;
-    if (value >= 100) {
-      const step = 10 ** (Math.floor(Math.log10(value)) - 2);
-      return Math.round(value / step) * step;
-    }
-    if (value >= 10 || digits === 0) return Math.round(value);
-    return Math.round(value * 10) / 10;
+    if (value >= 100) return up(value, 10 ** (Math.floor(Math.log10(value)) - 1));
+    if (value >= 10 || digits === 0) return up(value, 1);
+    return up(value, 0.25);
   };
   const format = (n) => {
     const whole = Number.isInteger(Math.round(n * 100) / 100);
