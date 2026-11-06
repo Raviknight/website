@@ -23,6 +23,10 @@ A quality inspector in a clean inspection room measures a complex machined aeros
 
 A technician in a bright, clean medical device assembly area, wearing a hairnet, gloves and a light gown, inspects a small precision component under a magnifier lamp at a white workbench. Stainless steel surfaces, neatly labelled bins with no readable labels, soft even light. Sterile and orderly.
 
+### 3, second try (the first one's magnifier lamp looked like it was floating)
+
+A technician in a bright, clean medical device assembly room sits at a white ESD workbench, looking through a stereo microscope that stands firmly on the bench, while holding a tiny stainless steel component with fine tweezers. The technician wears a hairnet, nitrile gloves and a light blue cleanroom gown, and is seen from the side. On the bench: a small tray of identical components and a closed parts bin. Behind, softly out of focus: stainless steel shelving and a second workbench. All equipment rests on the bench or floor, nothing hangs in the air. Bins and shelves have no labels at all. Even, soft daylight, calm and orderly.
+
 ## 4. `tile-regulated-plant.jpg`: FDA-regulated plants and maintenance
 
 A maintenance technician kneels beside a stainless steel production line in a regulated manufacturing plant, such as packaging or pharmaceutical processing, holding a rugged tablet in one hand while checking a gauge on the machine. The tablet screen faces away from the camera. The technician wears safety glasses, a hairnet and coveralls. The machine guard is open, with a lockout tag on the panel, and the tag has no readable text.
