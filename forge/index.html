@@ -8,27 +8,39 @@
 <meta name="description" content="Forge is a manufacturing ERP for contract manufacturers moving off Excel, Word or an old ERP.">
 <link rel="icon" href="../assets/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/site.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head"><div class="wrap">
   <a class="brand" href="../"><img src="../assets/mark.svg" alt="">Forge + PM Tracker</a>
-  <nav class="nav" aria-label="Main">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav class="nav" id="main-nav" aria-label="Main">
     <a href="./" aria-current="page">Forge</a>
     <a href="../pm-tracker/">PM Tracker</a>
+    <a href="../industries/">Industries</a>
+    <a href="../getting-started/">Getting started</a>
     <a href="../pricing/">Pricing</a>
-    <a class="btn" href="../contact/?product=forge">Request a demo</a>
+    <a class="btn" href="../contact/">Request a demo</a>
   </nav>
 </div></header>
 
 <main id="main">
-  <section class="hero"><div class="wrap">
-    <p class="eyebrow">Forge manufacturing ERP</p>
-    <h1>Replace the spreadsheets, or the ERP your team works around.</h1>
-    <p class="lede">The ease of a job-shop system, with the depth regulated work demands. Forge is for contract manufacturers: machine shops, aerospace, medical device, defense and ISO 9001 shops.</p>
-    <div class="cta-row">
-      <a class="btn" href="../contact/?product=forge">Request a demo</a>
-      <a class="btn ghost" href="../contact/?product=forge&amp;intent=overview">Get the overview (PDF)</a>
+  <section class="hero hero-glow"><div class="wrap hero-split">
+    <div>
+      <p class="eyebrow">Forge manufacturing ERP</p>
+      <h1>Replace the spreadsheets, or the ERP your team works around.</h1>
+      <p class="lede">The ease of a job-shop system, with the depth regulated work demands. Forge is for contract manufacturers: machine shops, aerospace, medical device, defense and ISO 9001 shops.</p>
+      <div class="cta-row">
+        <a class="btn" href="../contact/?product=forge">Request a demo</a>
+        <a class="btn ghost" href="../contact/?product=forge&amp;intent=overview">Get the overview (PDF)</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <figure class="frame"><img src="../assets/img/forge-sales-order.png" width="1440" height="660" alt="Forge sales order with its line, linked job, and buttons to create a shipment or invoice."></figure>
+      <figure class="frame small"><img src="../assets/img/forge-job-schedule.png" width="1440" height="860" alt="Forge job schedule with one late job in red."></figure>
+      <span class="chip info" style="top:8%;right:-2%">Linked to its job</span>
+      <span class="chip warn" style="bottom:22%;right:6%">Late job flagged</span>
     </div>
   </div></section>
 
@@ -145,10 +157,13 @@
 </main>
 
 <footer class="site-foot"><div class="wrap">
-  <span>© 2026 Forge and PM Tracker</span>
-  <nav aria-label="Footer">
-    <a href="./">Forge</a><a href="../pm-tracker/">PM Tracker</a><a href="../pricing/">Pricing</a><a href="../contact/">Contact</a><a href="../privacy/">Privacy</a>
-  </nav>
+  <div class="foot-grid">
+    <div><a class="brand" href="../"><img src="../assets/mark.svg" alt="">Forge + PM Tracker</a><p>Manufacturing ERP and maintenance software for regulated shops, running on your own hardware.</p></div>
+    <div><h2>Products</h2><ul><li><a href="../forge/">Forge</a></li><li><a href="../pm-tracker/">PM Tracker</a></li><li><a href="../pricing/">Pricing</a></li></ul></div>
+    <div><h2>Learn</h2><ul><li><a href="../industries/">Industries</a></li><li><a href="../getting-started/">Getting started</a></li><li><a href="../contact/?intent=overview&amp;product=both">Product overviews (PDF)</a></li></ul></div>
+    <div><h2>Company</h2><ul><li><a href="../contact/">Contact</a></li><li><a href="../privacy/">Privacy</a></li></ul></div>
+  </div>
+  <div class="foot-base"><span>© 2026 Forge and PM Tracker</span><span>Screens show sample data.</span></div>
 </div></footer>
 <script src="../assets/site.js"></script>
 </body>

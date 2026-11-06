@@ -172,6 +172,127 @@ textarea { min-height: 130px; resize: vertical; }
 .downloads { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 6px; font-weight: 600; }
 
 /* Footer */
-.site-foot { border-top: 1px solid var(--line); padding-block: 32px; font-size: .92rem; color: var(--muted); }
-.site-foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; }
-.site-foot nav { display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.site-foot { border-top: 1px solid var(--line); background: var(--surface); padding-block: 52px 28px; font-size: .92rem; color: var(--muted); }
+.foot-grid { display: grid; gap: 32px; grid-template-columns: 1.4fr repeat(3, 1fr); }
+@media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > :first-child { grid-column: 1 / -1; } }
+.foot-grid h2 { font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; }
+.foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.foot-grid a { color: var(--muted); text-decoration: none; }
+.foot-grid a:hover { color: var(--action); }
+.foot-grid .brand { margin-bottom: 10px; }
+.foot-base { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; }
+
+/* ---- Layout pieces added in the November 2026 redesign ---- */
+:root { --shadow: 0 24px 60px rgb(28 25 23 / .16), 0 4px 14px rgb(28 25 23 / .06); --tint: #fff1e6; }
+@media (prefers-color-scheme: dark) { :root { --shadow: 0 24px 60px rgb(0 0 0 / .45); --tint: #2a1d14; } }
+
+/* Header and the phone menu */
+.site-head { background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: saturate(1.4) blur(10px); }
+.site-head .wrap { flex-wrap: nowrap; }
+.menu-toggle { display: none; background: none; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); font: inherit; font-weight: 600; padding: 7px 12px; cursor: pointer; }
+@media (max-width: 900px) {
+  .site-head .wrap { flex-wrap: wrap; }
+  .js .menu-toggle { display: inline-block; }
+  .js .nav { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; padding: 4px 0 14px; }
+  .js .site-head.open .nav { display: flex; }
+  .js .nav a { padding: 11px 2px; border-bottom: 1px solid var(--line); }
+  .js .nav a[aria-current="page"] { box-shadow: none; color: var(--action); }
+  .js .nav a.btn { margin-top: 14px; text-align: center; border-bottom: 0; }
+}
+
+/* Hero beside product screens */
+.hero-split { display: grid; gap: 48px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: center; }
+@media (max-width: 960px) { .hero-split { grid-template-columns: 1fr; } }
+.hero-glow { background: radial-gradient(1100px 520px at 85% 0%, var(--tint), transparent 70%), var(--bg); }
+.hero-split h1 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); }
+.hero-points { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 8px; color: var(--muted); }
+.hero-points li { position: relative; padding-left: 28px; }
+.hero-points li::before { content: ""; position: absolute; left: 2px; top: .38em; width: 12px; height: 6px; border-left: 2.5px solid var(--brand); border-bottom: 2.5px solid var(--brand); transform: rotate(-45deg); }
+.hero-visual { position: relative; padding-bottom: 64px; }
+.hero-visual .frame.small { position: absolute; width: 58%; left: -5%; bottom: 0; }
+.chip { position: absolute; display: inline-flex; align-items: center; gap: 8px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: .84rem; font-weight: 650; box-shadow: var(--shadow); white-space: nowrap; }
+.chip::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--chip, var(--ok)); }
+.chip.warn { --chip: #dc2626; }
+.chip.info { --chip: var(--brand); }
+@media (max-width: 600px) { .hero-visual { padding-bottom: 0; } .hero-visual .frame.small, .hero-visual .chip { display: none; } }
+
+/* Browser frame around screenshots. The older .shot figures get the same look. */
+.shot { border-radius: 12px; box-shadow: var(--shadow); }
+.shot::before, .frame::before { content: ""; display: block; height: 26px; border-bottom: 1px solid var(--line); background:
+  radial-gradient(circle at 15px 50%, #f87171 4px, transparent 4.5px),
+  radial-gradient(circle at 31px 50%, #fbbf24 4px, transparent 4.5px),
+  radial-gradient(circle at 47px 50%, #4ade80 4px, transparent 4.5px), var(--surface-2); }
+.frame { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+.frame::before { content: ""; display: block; height: 26px; border-bottom: 1px solid var(--line); background:
+  radial-gradient(circle at 15px 50%, #f87171 4px, transparent 4.5px),
+  radial-gradient(circle at 31px 50%, #fbbf24 4px, transparent 4.5px),
+  radial-gradient(circle at 47px 50%, #4ade80 4px, transparent 4.5px), var(--surface-2); }
+.frame figcaption { padding: 9px 14px; font-size: .84rem; color: var(--muted); border-top: 1px solid var(--line); }
+
+/* "Built for" strip in place of customer logos */
+.strip { padding-block: 24px; border-block: 1px solid var(--line); background: var(--surface); }
+.strip .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 32px; }
+.strip p { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.strip ul { display: flex; flex-wrap: wrap; gap: 8px 28px; list-style: none; margin: 0; padding: 0; font-weight: 650; }
+
+/* Line icons */
+.icon { width: 44px; height: 44px; border-radius: 10px; display: grid; place-items: center; background: var(--tint); color: var(--action); margin-bottom: 14px; }
+.icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Product tour. Without JavaScript every panel shows, one under another. */
+.tabs { display: none; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.js .tabs { display: flex; }
+.tabs button { font: inherit; font-size: .95rem; font-weight: 600; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+.tabs button:hover { border-color: var(--brand); }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.panel { display: grid; gap: 36px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); align-items: center; }
+.panel + .panel { margin-top: 64px; }
+.js .panel + .panel { margin-top: 0; }
+.panel[hidden] { display: none; }
+@media (max-width: 860px) { .panel { grid-template-columns: 1fr; } }
+.tag { display: inline-block; font-size: .8rem; font-weight: 700; color: var(--action); background: var(--tint); border-radius: 999px; padding: 3px 11px; margin-bottom: 12px; }
+.panel h3, .row h3 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); }
+.panel p, .row p { color: var(--muted); margin-top: 12px; }
+.panel .ticks, .row .ticks { margin-top: 14px; }
+
+/* Alternating feature rows */
+.row { display: grid; gap: 44px; grid-template-columns: minmax(0, .85fr) minmax(0, 1.4fr); align-items: center; }
+.row + .row { margin-top: clamp(56px, 8vw, 96px); }
+.row.flip { grid-template-columns: minmax(0, 1.4fr) minmax(0, .85fr); }
+.row.flip > :first-child { order: 2; }
+@media (max-width: 860px) { .row, .row.flip { grid-template-columns: 1fr; } .row.flip > :first-child { order: 0; } }
+
+/* Numbered steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); counter-reset: step; }
+.steps li { counter-increment: step; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 22px; }
+.steps li::before { content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--action); color: var(--on-action); font-weight: 700; margin-bottom: 14px; }
+.steps h3 { font-size: 1.08rem; }
+.steps p { color: var(--muted); margin-top: 8px; font-size: .96rem; }
+
+/* Industry tiles. Add a photo later with style="--photo: url(...)" */
+.tiles { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.tile { display: flex; flex-direction: column; justify-content: flex-end; min-height: 320px; padding: 24px; border-radius: 14px; overflow: hidden; color: #fafaf9; text-decoration: none;
+  background: linear-gradient(180deg, rgb(12 10 9 / .1) 10%, rgb(12 10 9 / .9) 78%), var(--photo, linear-gradient(140deg, #57534e, #1c1917)); background-size: cover; background-position: center; }
+.tile:hover { color: #fafaf9; }
+.tile h3 { font-size: 1.3rem; }
+.tile p { color: #e7e5e4; margin-top: 6px; font-size: .95rem; }
+.tile .std { margin-top: 12px; font-size: .78rem; font-weight: 700; letter-spacing: .05em; color: #fdba74; }
+.tile .more { margin-top: 12px; font-weight: 650; color: #fdba74; }
+.tile:hover .more { text-decoration: underline; }
+
+/* Before and after */
+.compare { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+.compare .before { background: var(--surface-2); }
+.compare .after { border: 2px solid var(--brand); }
+.crosses li::before { content: "×"; background: none; color: var(--error); font-weight: 700; width: auto; height: auto; top: -.05em; left: 3px; }
+
+/* A row of plain facts, used where other sites show customer numbers */
+.values { display: grid; gap: 1px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.values div { background: var(--surface); padding: 26px 22px; }
+.values strong { display: block; font-size: 1.3rem; letter-spacing: -.01em; }
+.values > div > span { display: block; color: var(--muted); margin-top: 6px; font-size: .95rem; }
+
+/* Industry page sections */
+.industry { scroll-margin-top: 90px; }
+.industry .standards { margin-top: 14px; }
+.photo { margin: 0; border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--photo, linear-gradient(140deg, #57534e, #1c1917)) center / cover; }

@@ -42,6 +42,39 @@ if (document.querySelector("[data-price]")) {
     .catch(() => {}); // the page already shows a sensible default
 }
 
+// The phone menu.
+const head = document.querySelector(".site-head");
+const toggle = head && head.querySelector(".menu-toggle");
+if (toggle) {
+  toggle.addEventListener("click", () => {
+    const open = head.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.textContent = open ? "Close" : "Menu";
+  });
+}
+
+// Product tours: a row of tabs, each showing one panel.
+document.querySelectorAll("[data-tabs]").forEach((tour) => {
+  const tabs = [...tour.querySelectorAll("[role=tab]")];
+  const select = (chosen, focus) => {
+    tabs.forEach((tab) => {
+      const on = tab === chosen;
+      tab.setAttribute("aria-selected", String(on));
+      tab.tabIndex = on ? 0 : -1;
+      document.getElementById(tab.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) chosen.focus();
+  };
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => select(tab));
+    tab.addEventListener("keydown", (event) => {
+      const step = { ArrowRight: 1, ArrowLeft: -1 }[event.key];
+      if (step) select(tabs[(i + step + tabs.length) % tabs.length], true);
+    });
+  });
+  select(tabs[0]);
+});
+
 const countLead = (name) => {
   if (window.goatcounter && window.goatcounter.count) {
     window.goatcounter.count({ path: name, title: name, event: true });

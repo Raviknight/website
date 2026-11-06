@@ -8,44 +8,71 @@
 <meta name="description" content="Forge ERP and PM Tracker maintenance software for small manufacturers moving off paper, spreadsheets and old software.">
 <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-head"><div class="wrap">
   <a class="brand" href="./"><img src="assets/mark.svg" alt="">Forge + PM Tracker</a>
-  <nav class="nav" aria-label="Main">
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav class="nav" id="main-nav" aria-label="Main">
     <a href="forge/">Forge</a>
     <a href="pm-tracker/">PM Tracker</a>
+    <a href="industries/">Industries</a>
+    <a href="getting-started/">Getting started</a>
     <a href="pricing/">Pricing</a>
     <a class="btn" href="contact/">Request a demo</a>
   </nav>
 </div></header>
 
 <main id="main">
-  <section class="hero"><div class="wrap">
-    <p class="eyebrow">Software for regulated manufacturers</p>
-    <h1>Get your shop off paper, spreadsheets and old software.</h1>
-    <p class="lede">An ERP and a maintenance system for small manufacturers in medical, aerospace and other regulated work. Both run on your own hardware, with audit trails designed in from the start.</p>
-    <div class="cta-row">
-      <a class="btn" href="contact/">Request a demo</a>
-      <a class="btn ghost" href="contact/?intent=overview&amp;product=both">Get the overview (PDF)</a>
+  <section class="hero hero-glow"><div class="wrap hero-split">
+    <div>
+      <p class="eyebrow">Software for regulated manufacturers</p>
+      <h1>Get your shop off paper, spreadsheets and old software.</h1>
+      <p class="lede">An ERP and a maintenance system for small manufacturers in medical, aerospace and other regulated work. Both run on your own hardware, with audit trails designed in from the start.</p>
+      <ul class="hero-points">
+        <li>One record for each job, from quote to invoice</li>
+        <li>PMs planned, done and reviewed on screen</li>
+        <li>Published prices, with a calculator for each product</li>
+      </ul>
+      <div class="cta-row">
+        <a class="btn" href="contact/">Request a demo</a>
+        <a class="btn ghost" href="#tour">Take the tour</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <figure class="frame"><img src="assets/img/forge-job-schedule.png" width="1440" height="860" alt="Forge job schedule chart listing work orders with due dates and bars across a calendar, with one late job in red."></figure>
+      <figure class="frame small"><img src="assets/img/pm-dashboard.png" width="1440" height="800" alt="PM Tracker dashboard showing overdue tasks, machines on hold and work waiting for approval."></figure>
+      <span class="chip warn" style="top:14%;right:-2%">Late job flagged</span>
+      <span class="chip info" style="bottom:18%;right:4%">PM waiting for approval</span>
     </div>
   </div></section>
 
-  <section class="alt"><div class="wrap">
-    <div class="section-head"><h2>Where are you today?</h2></div>
+  <div class="strip"><div class="wrap">
+    <p>Built for</p>
+    <ul>
+      <li>Machine and job shops</li><li>Aerospace and defense</li><li>Medical device</li><li>FDA-regulated plants</li><li>ISO 9001 shops</li>
+    </ul>
+  </div></div>
+
+  <section><div class="wrap">
+    <div class="section-head"><h2>Where are you today?</h2><p>Most shops we talk to are in one of these three places.</p></div>
     <div class="grid three">
       <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></div>
         <h3>PMs on paper, records in Excel</h3>
         <p>Nobody can see what's overdue without asking, and an auditor's question means digging through binders. PM Tracker has unlimited users, and if you contact us, we'll give you a <span data-price="pm-free-months">6</span>-month trial licence.</p>
         <a class="more" href="pm-tracker/">See PM Tracker</a>
       </div>
       <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/></svg></div>
         <h3>Running jobs in Excel and Word</h3>
         <p>Quotes, travelers and NCRs sit in separate files, and the real job status is in someone's head. Forge puts them on one record.</p>
         <a class="more" href="forge/">See Forge</a>
       </div>
       <div class="card">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4M7 9h4M7 12h7"/></svg></div>
         <h3>Stuck on an old ERP</h3>
         <p>Dated screens, workflows from another era, and a team that keeps its own spreadsheets to get around them. Forge is a modern replacement.</p>
         <a class="more" href="forge/">See Forge</a>
@@ -53,7 +80,69 @@
     </div>
   </div></section>
 
-  <section id="products"><div class="wrap">
+  <section class="alt" id="tour"><div class="wrap" data-tabs>
+    <div class="section-head"><p class="eyebrow">Product tour</p><h2>See the screens your team would use</h2></div>
+    <div class="tabs" role="tablist" aria-label="Product tour">
+      <button role="tab" id="t-schedule" aria-controls="p-schedule">Job schedule</button>
+      <button role="tab" id="t-machines" aria-controls="p-machines">Machine board</button>
+      <button role="tab" id="t-quality" aria-controls="p-quality">NCR and CAPA</button>
+      <button role="tab" id="t-plan" aria-controls="p-plan">Weekly PM plan</button>
+      <button role="tab" id="t-board" aria-controls="p-board">Live board</button>
+      <button role="tab" id="t-audit" aria-controls="p-audit">Audit trail</button>
+    </div>
+    <div class="panel" role="tabpanel" id="p-schedule" aria-labelledby="t-schedule">
+      <div><span class="tag">Forge</span><h3>Know which jobs will be late, before they are</h3><p>Forge plans each job back from its due date using your routing estimates, and shows what's going to be late.</p><a class="more" href="forge/">More about Forge</a></div>
+      <figure class="frame"><img src="assets/img/forge-job-schedule.png" width="1440" height="860" loading="lazy" alt="Forge job schedule with one late job in red."><figcaption>Sample data.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="p-machines" aria-labelledby="t-machines">
+      <div><span class="tag">Forge · Advanced Scheduling</span><h3>Give every machine a lane</h3><p>The machine board plans operations forward from now against machine capacity. Drag work where it fits, then approve the plan.</p><a class="more" href="forge/">More about Forge</a></div>
+      <figure class="frame"><img src="assets/img/forge-machine-board.png" width="1440" height="880" loading="lazy" alt="Forge machine scheduling board with a lane for each machine."><figcaption>Sample data.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="p-quality" aria-labelledby="t-quality">
+      <div><span class="tag">Forge</span><h3>Close the nonconformance, keep the CAPA open</h3><p>An NCR links to its CAPA, so the part can be dispositioned in a day or two while the corrective actions run on their own dates.</p><a class="more" href="forge/">More about Forge</a></div>
+      <figure class="frame"><img src="assets/img/forge-ncr-capa.png" width="1164" height="893" loading="lazy" alt="Forge nonconformance with its linked CAPA and open actions."><figcaption>Sample data.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="p-plan" aria-labelledby="t-plan">
+      <div><span class="tag">PM Tracker</span><h3>Plan the week by dragging PMs where they fit</h3><p>Supervisors move PMs between technicians and days. If nobody plans the week, PM Tracker schedules it and marks it as auto-scheduled.</p><a class="more" href="pm-tracker/">More about PM Tracker</a></div>
+      <figure class="frame"><img src="assets/img/pm-weekly-plan.png" width="1440" height="750" loading="lazy" alt="PM Tracker weekly plan of technicians by day."><figcaption>Sample data.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="p-board" aria-labelledby="t-board">
+      <div><span class="tag">PM Tracker</span><h3>Put the floor on the wall</h3><p>The live board shows work due, who's working now, machine availability and planned downtime. It refreshes by itself.</p><a class="more" href="pm-tracker/">More about PM Tracker</a></div>
+      <figure class="frame"><img src="assets/img/pm-live-board-team.png" width="1440" height="900" loading="lazy" alt="PM Tracker live board team view."><figcaption>Sample data.</figcaption></figure>
+    </div>
+    <div class="panel" role="tabpanel" id="p-audit" aria-labelledby="t-audit">
+      <div><span class="tag">PM Tracker</span><h3>Answer the auditor from the record</h3><p>Every action goes into an append-only audit trail that can't be edited afterwards, designed to support your validation.</p><a class="more" href="pm-tracker/">More about PM Tracker</a></div>
+      <figure class="frame"><img src="assets/img/pm-audit.png" width="1440" height="750" loading="lazy" alt="PM Tracker audit trail of dated changes by user."><figcaption>Sample data.</figcaption></figure>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="section-head"><h2>From scattered files to one system</h2></div>
+    <div class="compare">
+      <div class="card before">
+        <h3>Today</h3>
+        <ul class="ticks crosses">
+          <li>The same job typed into a quote, a traveler and an invoice</li>
+          <li>The schedule lives in one person's head</li>
+          <li>PM sheets lost, late or filled in after the fact</li>
+          <li>Anyone can overwrite a cell, and nobody can tell who did</li>
+          <li>Audit prep means weeks of pulling binders</li>
+        </ul>
+      </div>
+      <div class="card after">
+        <h3>With Forge and PM Tracker</h3>
+        <ul class="ticks">
+          <li>Each step picks up from the last, from quote to invoice</li>
+          <li>An automatic schedule your planners can adjust</li>
+          <li>Checklists done on screen, saved as the work happens</li>
+          <li>Every change recorded with who made it and when</li>
+          <li>Records ready to show, because they were kept as you went</li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="alt" id="products"><div class="wrap">
     <div class="section-head"><h2>Two products. Start with the one you need.</h2><p>PM Tracker is sold on its own, and it's also the maintenance module inside Forge.</p></div>
     <div class="grid two">
       <article class="card product">
@@ -75,7 +164,7 @@
         <ul class="ticks">
           <li>Drag-and-drop planning and auto scheduling</li>
           <li>A live board for your team and machines</li>
-          <li>Work orders, QA review and machine holds</li>
+          <li>Readings with limits, and repairs from failed checks</li>
           <li>An append-only audit trail</li>
         </ul>
         <a class="btn" href="pm-tracker/">Explore PM Tracker</a>
@@ -83,24 +172,47 @@
     </div>
   </div></section>
 
-  <section class="alt"><div class="wrap">
-    <div class="section-head"><h2>Built around how regulated shops work</h2></div>
-    <div class="grid three">
-      <div class="card"><h3>Your hardware, your data</h3><p>Both products install on your own machines. Your records and backups stay under your control.</p></div>
-      <div class="card"><h3>Records you can trace</h3><p>Who changed what, and when, is recorded as the work happens rather than rebuilt before an audit.</p></div>
-      <div class="card"><h3>Prices you can check</h3><p>The pricing page has a calculator for each product, so you can work out your cost before you talk to anyone. <a href="pricing/">See pricing</a></p></div>
-    </div>
-    <ul class="standards" aria-label="Who these products are for">
-      <li>Medical device</li><li>Aerospace</li><li>Defense</li><li>ISO 9001 shops</li><li>FDA-regulated plants</li>
-    </ul>
-  </div></section>
-
-  <!-- ABOUT: add once the company name and founder background are ready.
   <section><div class="wrap">
-    <div class="section-head"><h2>Who's behind this</h2><p>NAME and BACKGROUND go here.</p></div>
+    <div class="section-head"><h2>Who it's built for</h2><p>Both products are made for shops where the record matters as much as the part.</p></div>
+    <div class="tiles">
+      <a class="tile" href="industries/#machine-shops"><h3>Machine and job shops</h3><p>Quotes, travelers, job costing and a schedule everyone can see.</p><span class="more">See how it fits</span></a>
+      <a class="tile" href="industries/#aerospace"><h3>Aerospace and defense</h3><p>Ballooned prints, inspection guide sheets, NCR and CAPA.</p><span class="std">Designed to support AS9100</span><span class="more">See how it fits</span></a>
+      <a class="tile" href="industries/#medical"><h3>Medical device</h3><p>Controlled documents, change control and lot traceability.</p><span class="std">Designed to support ISO 13485</span><span class="more">See how it fits</span></a>
+      <a class="tile" href="industries/#regulated-plants"><h3>FDA-regulated plants</h3><p>PMs, machine holds and QA review, with an audit trail.</p><span class="std">For FDA, EMA and Health Canada plants</span><span class="more">See how it fits</span></a>
+    </div>
   </div></section>
-  -->
 
+  <section class="alt"><div class="wrap">
+    <div class="section-head"><h2>What you can count on</h2></div>
+    <div class="values">
+      <div><strong>Your server</strong><span>Both products install on your own hardware. Your data and backups stay with you.</span></div>
+      <div><strong>Unlimited users</strong><span>On every PM Tracker plan, and unlimited operators on Forge's floor terminals.</span></div>
+      <div><strong>Published prices</strong><span>Check your cost on the pricing page before you talk to anyone.</span></div>
+      <div><strong><span data-price="pm-free-months">6</span>-month trial</strong><span>A PM Tracker trial licence, as a gift, when you contact us.</span></div>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="section-head"><h2>How we get you running</h2><p>What happens after you get in touch.</p></div>
+    <ol class="steps">
+      <li><h3>Tell us how you work</h3><p>What you use today, how many people and machines, and what's not working.</p></li>
+      <li><h3>See it on a job like yours</h3><p>A demo built around your process, not a generic script.</p></li>
+      <li><h3>Get a clear quote</h3><p>Licence prices are published. Deployment is a one-time charge, quoted for your size and data.</p></li>
+      <li><h3>Install and bring your data</h3><p>We set it up on your server and import or add the data you want to start with.</p></li>
+    </ol>
+    <div class="cta-row"><a class="btn ghost" href="getting-started/">More about getting started</a></div>
+  </div></section>
+
+  <section class="alt"><div class="wrap">
+    <div class="section-head"><h2>Questions we expect</h2></div>
+    <details><summary>Can we start with just one product?</summary><p>Yes. PM Tracker is sold on its own. Forge starts with its Core plan, and you add modules when you need them.</p></details>
+    <details><summary>Where does it run?</summary><p>On your own PC or server. Your data stays with you.</p></details>
+    <details><summary>Does it make us compliant?</summary><p>No software can do that alone. Both products are designed to support your quality system, and your shop is what gets certified or validated.</p></details>
+    <details><summary>What about the data we already have?</summary><p>Deployment includes bringing in the data you want to start with. PM Tracker imports your asset and PM lists, so you don't start from a blank system.</p></details>
+    <details><summary>Can we try it first?</summary><p>For PM Tracker, yes. <a href="contact/?product=pm-tracker&amp;intent=trial">Contact us</a> and we'll give you a <span data-price="pm-free-months">6</span>-month trial licence as a gift. For Forge, <a href="contact/?product=forge">ask for a demo</a> on a job like yours.</p></details>
+  </div></section>
+
+  <!-- ABOUT: add once the company name and founder background are ready. -->
   <!-- After the pilot: add customer logos, a results line and a named quote here. Only real ones, with permission. -->
 
   <section class="band"><div class="wrap">
@@ -114,10 +226,13 @@
 </main>
 
 <footer class="site-foot"><div class="wrap">
-  <span>© 2026 Forge and PM Tracker</span>
-  <nav aria-label="Footer">
-    <a href="forge/">Forge</a><a href="pm-tracker/">PM Tracker</a><a href="pricing/">Pricing</a><a href="contact/">Contact</a><a href="privacy/">Privacy</a>
-  </nav>
+  <div class="foot-grid">
+    <div><a class="brand" href="./"><img src="assets/mark.svg" alt="">Forge + PM Tracker</a><p>Manufacturing ERP and maintenance software for regulated shops, running on your own hardware.</p></div>
+    <div><h2>Products</h2><ul><li><a href="forge/">Forge</a></li><li><a href="pm-tracker/">PM Tracker</a></li><li><a href="pricing/">Pricing</a></li></ul></div>
+    <div><h2>Learn</h2><ul><li><a href="industries/">Industries</a></li><li><a href="getting-started/">Getting started</a></li><li><a href="contact/?intent=overview&amp;product=both">Product overviews (PDF)</a></li></ul></div>
+    <div><h2>Company</h2><ul><li><a href="contact/">Contact</a></li><li><a href="privacy/">Privacy</a></li></ul></div>
+  </div>
+  <div class="foot-base"><span>© 2026 Forge and PM Tracker</span><span>Screens show sample data.</span></div>
 </div></footer>
 <script src="assets/site.js"></script>
 </body>
