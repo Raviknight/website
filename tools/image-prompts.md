@@ -19,6 +19,12 @@ A machinist in a small, tidy CNC job shop checks a freshly machined aluminium pa
 
 A machinist in a small, tidy CNC job shop measures the outside width of a freshly machined rectangular aluminium block with a digital caliper, standing beside an enclosed CNC milling machine with its door open. The caliper is held correctly: both outside jaws close squarely across the two parallel faces of the block, at a right angle to them, with the caliper's main beam parallel to those faces and no tilt. One hand holds the block, the other works the caliper's thumb wheel. The caliper's display faces away from the camera. The machinist wears safety glasses and a dark work shirt, and is seen from the side, looking down at the part. Background: more CNC machines, a rack of tool holders and a rolling cart of finished parts, slightly out of focus. No logos or brand names on any machine.
 
+### 1, third try: edit the first photo instead of starting again
+
+Upload the first machine shop photo (the one with the machined part) to Gemini with this:
+
+Edit this photo. Change only how the caliper is used, and keep everything else exactly as it is: the machinist, the machined aluminium part with its pockets and holes, the machines, the lighting and the framing. The part is a rectangular plate with machined pockets and holes, and two straight, parallel outer edges. The machinist measures the overall width of the plate: both outside jaws of the digital caliper close squarely across the two parallel outer edges, at a right angle to them, with the caliper's beam lying flat along the plate's face and no tilt. The caliper's display faces away from the camera. Remove the red logo from the machine in the background, and leave no logos or brand names on any machine.
+
 ## 2. `tile-aerospace.jpg`: Aerospace and defense
 
 A quality inspector in a clean inspection room measures a complex machined aerospace bracket on a granite-table coordinate measuring machine (CMM), with the probe touching the part. The inspector wears safety glasses and a lab coat over work clothes. A printed engineering drawing lies on the table, with its details blurred and unreadable. Cool, precise, calm atmosphere.
