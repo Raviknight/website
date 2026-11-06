@@ -295,4 +295,11 @@ textarea { min-height: 130px; resize: vertical; }
 /* Industry page sections */
 .industry { scroll-margin-top: 90px; }
 .industry .standards { margin-top: 14px; }
-.photo { margin: 0; border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--photo, linear-gradient(140deg, #57534e, #1c1917)) center / cover; }
+.photo { margin: 0; border-radius: 14px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--photo, linear-gradient(140deg, #57534e, #1c1917)) center / cover; box-shadow: var(--shadow); }
+.photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.row > div > h2 + p { color: var(--muted); margin-top: 12px; font-size: 1.05rem; }
+
+/* Industry tile photos. Paths are relative to this stylesheet. */
+.tile-machine-shops { --photo: url(img/tile-machine-shop.jpg); }
+.tile-aerospace { --photo: url(img/tile-aerospace.jpg); }
+.tile-regulated-plants { --photo: url(img/tile-regulated-plant.jpg); }
