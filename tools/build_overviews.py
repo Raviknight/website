@@ -129,7 +129,7 @@ PRODUCTS = {
             ("Complete: planning", "Drag-and-drop weekly planning, with auto scheduling when nobody has planned the week."),
             ("Complete: live board", "A wall display of work due, your team, machine availability and planned downtime."),
             ("Complete: spares and costs", "A parts catalog with stock levels and low-stock alerts, and reports on what maintenance is costing you."),
-            ("Complete: multiple sites", "Run more than one site, and limit people to the machines they work on."),
+            ("Complete: multiple sites", "Run more than one site, and limit each person to the machines they look after."),
         ],
         "shots": [
             ("pm-weekly-plan.png", "The weekly plan, by technician and day."),
