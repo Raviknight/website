@@ -125,10 +125,10 @@ PRODUCTS = {
             ("Readings and failed checks", "Readings are judged against their limits, and a failed check offers a filled-in repair request."),
             ("Breakdown requests", "Report a breakdown, get it repaired, then send it for QA review."),
             ("Machine holds", "Take a machine out of service, and lift the hold when it's ready."),
-            ("Machine history and reports", "A printable history of each machine's PMs, repairs, holds, downtime and failed checks, plus basic reports."),
+            ("Machine history and reports", "A printable history of each machine, plus reports on whether PMs are done on time and how the program is performing."),
             ("Complete: planning", "Drag-and-drop weekly planning, with auto scheduling when nobody has planned the week."),
             ("Complete: live board", "A wall display of work due, your team, machine availability and planned downtime."),
-            ("Complete: spares and costs", "A parts catalog with stock levels and low-stock alerts, and reports on what maintenance is costing you."),
+            ("Complete: spares and costs", "A parts catalog with stock levels and low-stock alerts, cost reports per machine, and reports you build yourself."),
             ("Complete: multiple sites", "Run more than one site, and limit each person to the machines they look after."),
         ],
         "shots": [

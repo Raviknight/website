@@ -124,7 +124,7 @@
           "Work orders with supervisor approval, and printable work orders",
           "Readings with upper and lower limits, and repair requests from failed checks",
           "Breakdown requests with QA review, and machine holds",
-          "Machine history and basic reports",
+          "The reports your records need: PM compliance, PM performance and machine history",
           "Dashboard, notifications and reminders",
           "Parts used on every job, typed in with an optional cost",
           "Asset and PM imports, and file attachments",
@@ -142,7 +142,7 @@
           "Team availability and personal schedules",
           "Live board for a wall display",
           "A parts catalog with stock levels, automatic stock use and low-stock alerts",
-          "Cost and analysis reports",
+          "Maintenance cost reports, and reports you build yourself",
           "Multiple sites, and limiting each person to the machines they look after"
         ]
       }
