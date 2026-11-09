@@ -34,7 +34,7 @@ Run `python tools/build_overviews.py` after changing screenshots or wording, or 
 - [ ] Replace "Forge + PM Tracker" with the company name, and add a logo.
 - [ ] Confirm the PM Tracker name.
 - [ ] Check that PM Tracker's asset and PM imports, its read-only state after a licence ends, its reading limits, its repair requests from failed checks and its machine history report have reached a released build. The site already describes them. They were on `dev` on 2026-10-30.
-- [ ] PM Tracker's Core and Complete plans (added 2026-11-06) aren't fully enforced yet. Every Complete feature follows the plan on `dev` as of 2026-11-09, but none of it is in a released build yet. Its session put the work at one to two weeks.
+- [ ] PM Tracker's Core and Complete plans (added 2026-11-06) are fully enforced on `dev` as of 2026-11-09, but not in a released build. Don't sell them as separate plans until that release ships.
 - [ ] Don't sell PM Tracker Core from the released build of 2026-08-02. Fixes Core's records rely on are only on `dev`: imports that save, approval of Critical machines' PMs, consumables, rejected work orders printing correctly, and backups.
 - [ ] Check that Forge's Shop Floor extras on the pricing page exist: documents and drawings at the terminal, downtime reasons and scrap at the machine, and wall boards, which include live job displays. Forge's session hadn't checked which are built as of 2026-10-31. Don't claim machine or people performance or scrap figures on the boards until they're built.
 - [ ] Never use PM Tracker's `login.png`, which shows demo passwords. Don't show drawings.
